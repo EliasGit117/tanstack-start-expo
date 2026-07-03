@@ -1,0 +1,4 @@
+# Metro (Expo) needs a flat, hoisted node_modules to resolve Babel plugins /
+# native modules the way Node does. Bun's default isolated linker breaks that.
+[install]
+linker = "hoisted"

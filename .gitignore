@@ -11,3 +11,10 @@ dist-ssr
 .vinxi
 __unconfig*
 todos.json
+
+# expo / react-native
+.expo
+apps/mobile/android
+apps/mobile/ios
+*.orig.*
+web-build
