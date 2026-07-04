@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: '600',
+    userSelect: 'none',
   },
   textSecondary: {
     color: '#2563eb',

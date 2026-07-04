@@ -6,12 +6,13 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./screens/*": "./src/screens/*.tsx"
+    "./features/*": "./src/features/*.tsx"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/navigation": "workspace:*",
     "@repo/ui": "workspace:*"
   },
   "peerDependencies": {

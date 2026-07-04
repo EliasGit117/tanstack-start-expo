@@ -1,0 +1,30 @@
+{
+  "name": "@repo/navigation",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "sideEffects": false,
+  "peerDependencies": {
+    "@tanstack/react-router": "*",
+    "expo-router": "*",
+    "react": "*",
+    "react-native": "*"
+  },
+  "peerDependenciesMeta": {
+    "@tanstack/react-router": {
+      "optional": true
+    },
+    "expo-router": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@tanstack/react-router": "latest",
+    "@types/react": "^19.2.0",
+    "expo-router": "~56.2.11",
+    "react": "^19.2.0",
+    "react-native": "0.85.3",
+    "typescript": "^6.0.2"
+  }
+}

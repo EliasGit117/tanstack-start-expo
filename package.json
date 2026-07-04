@@ -7,9 +7,9 @@
   ],
   "scripts": {
     "web": "cd apps/web && bun run dev",
-    "mobile": "cd apps/mobile && bun run start",
-    "ios": "cd apps/mobile && bun run ios",
-    "android": "cd apps/mobile && bun run android",
+    "expo": "cd apps/expo && bun run start",
+    "ios": "cd apps/expo && bun run ios",
+    "android": "cd apps/expo && bun run android",
     "build:web": "cd apps/web && bun run build",
     "test": "bun --filter '*' test"
   },

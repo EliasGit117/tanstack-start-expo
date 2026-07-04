@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Button } from '@repo/ui'
+import { TextLink } from '@repo/navigation'
 
 /**
  * Cross-platform Home screen. Rendered by the TanStack Start route on web
- * (via react-native-web) and by the Expo app natively.
+ * (via react-native-web) and by the Expo app natively via expo-router.
  */
 export function HomeScreen() {
   const [count, setCount] = useState(0)
@@ -13,14 +14,16 @@ export function HomeScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Shared screen, every platform</Text>
       <Text style={styles.subtitle}>
-        <Text style={styles.code}>@repo/app</Text> screen using the{' '}
-        <Text style={styles.code}>@repo/ui</Text> Button.
+        <Text style={styles.code}>@repo/app</Text> screens, <Text style={styles.code}>@repo/ui</Text>{' '}
+        components, <Text style={styles.code}>@repo/navigation</Text> links.
       </Text>
 
       <Button onPress={() => setCount((c) => c + 1)}>Pressed {count} times</Button>
       <Button variant="secondary" onPress={() => setCount(0)}>
         Reset
       </Button>
+
+      <TextLink href="/users">View users →</TextLink>
     </View>
   )
 }

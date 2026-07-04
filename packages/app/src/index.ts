@@ -1,1 +1,4 @@
-export { HomeScreen } from './screens/home-screen'
+export { HomeScreen } from './features/home/screen'
+export { UserListScreen } from './features/user/list-screen'
+export { UserDetailScreen } from './features/user/detail-screen'
+export { USERS, getUser, type User } from './lib/users'
