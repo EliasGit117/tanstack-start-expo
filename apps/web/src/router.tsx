@@ -1,26 +1,34 @@
 import { createRouter as createTanStackRouter } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query';
-import { getContext } from './integrations/tanstack-query/root-provider';
 import { deLocalizeUrl, localizeUrl } from '@repo/app/src/paraglide/runtime';
+import { QueryClient } from '@tanstack/react-query';
+
 
 export function getRouter() {
-  const context = getContext();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        staleTime: 10_000,
+        gcTime: 10_000
+      }
+    }
+  });
 
   const router = createTanStackRouter({
     routeTree,
-    context,
     scrollRestoration: true,
     defaultPreload: 'intent',
     defaultPreloadStaleTime: 0,
+    context: { queryClient: queryClient },
     rewrite: {
       input: ({ url }) => deLocalizeUrl(url),
       output: ({ url }) => localizeUrl(url)
     },
   });
 
-  setupRouterSsrQueryIntegration({ router, queryClient: context.queryClient });
-
+  setupRouterSsrQueryIntegration({ router, queryClient: queryClient });
   return router;
 }
 

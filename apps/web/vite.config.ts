@@ -8,7 +8,7 @@ import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import { nitro } from 'nitro/vite';
 
 const config = defineConfig({
-  server: { port: 5173 },
+  server: { port: Number(process.env.PORT) || 5173 },
   resolve: { tsconfigPaths: true },
   plugins: [
     devtools(),
