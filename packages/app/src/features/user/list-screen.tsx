@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { TextLink } from '@repo/navigation'
-import { USERS } from '../../lib/users'
+import { m } from '@repo/app/src/paraglide/messages'
+import { USERS } from '@repo/app/src/lib/users'
 
 /** Cross-platform user list. Each row links to the detail screen. */
 export function UserListScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Users</Text>
+      <Text style={styles.title}>{m["features.users.title"]()}</Text>
 
       <View style={styles.list}>
         {USERS.map((user) => (
@@ -17,13 +18,13 @@ export function UserListScreen() {
                 {user.role} · {user.email}
               </Text>
             </View>
-            <TextLink href={`/users/${user.id}`}>Details →</TextLink>
+            <TextLink href={`/users/${user.id}`}>{m["features.users.details"]()}</TextLink>
           </View>
         ))}
       </View>
 
       <TextLink href="/" dismissTo>
-        ← Home
+        {m["features.users.backHome"]()}
       </TextLink>
     </View>
   )

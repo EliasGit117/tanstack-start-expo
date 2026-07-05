@@ -1,0 +1,21 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "features": {
+    "home": {
+      "title": "Shared screen, every platform",
+      "subtitle": "{app} screens, {ui} components, {navigation} links.",
+      "pressed": "Pressed {count} times",
+      "reset": "Reset",
+      "viewUsers": "View users →"
+    },
+    "users": {
+      "title": "Users",
+      "details": "Details →",
+      "backHome": "← Home",
+      "notFound": "User not found",
+      "noUserWithId": "No user with id \"{id}\".",
+      "back": "← Back",
+      "goBack": "Go back"
+    }
+  }
+}

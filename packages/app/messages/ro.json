@@ -1,0 +1,21 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "features": {
+    "home": {
+      "title": "Ecran partajat, pe toate platformele",
+      "subtitle": "Ecrane {app}, componente {ui}, linkuri {navigation}.",
+      "pressed": "Apăsat de {count} ori",
+      "reset": "Resetează",
+      "viewUsers": "Vezi utilizatorii →"
+    },
+    "users": {
+      "title": "Utilizatori",
+      "details": "Detalii →",
+      "backHome": "← Acasă",
+      "notFound": "Utilizator negăsit",
+      "noUserWithId": "Nu există utilizator cu id \"{id}\".",
+      "back": "← Înapoi",
+      "goBack": "Înapoi"
+    }
+  }
+}

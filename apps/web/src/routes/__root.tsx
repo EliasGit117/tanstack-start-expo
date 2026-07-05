@@ -38,15 +38,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <HeadContent/>
     </head>
     <body>
-    <View style={styles.container}>
-      <Link to="/">
-        Home
-      </Link>
-      <Link to="/rsc">
-        RSC
-      </Link>
-    </View>
-    {children}
+      <View style={styles.container}>
+        <Link to="/">
+          Home
+        </Link>
+        <Link to="/rsc">
+          RSC
+        </Link>
+      </View>
+      {children}
     <Scripts/>
     </body>
     </html>

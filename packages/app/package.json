@@ -4,22 +4,19 @@
   "private": true,
   "main": "./src/index.ts",
   "types": "./src/index.ts",
-  "exports": {
-    ".": "./src/index.ts",
-    "./features/*": "./src/features/*.tsx"
-  },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "i18n:compile": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide"
   },
   "dependencies": {
-    "@repo/navigation": "workspace:*",
-    "@repo/ui": "workspace:*"
+    "@repo/navigation": "workspace:*"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
   },
   "devDependencies": {
+    "@inlang/paraglide-js": "^2.20.2",
     "@types/react": "^19.2.0",
     "react": "^19.2.0",
     "react-native": "0.85.3",

@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
-import { Button } from '@repo/ui'
+import { Button } from '@repo/app/src/components/ui/button'
 import { useParams, useRouter } from '@repo/navigation'
-import { getUser } from '../../lib/users'
+import { m } from '@repo/app/src/paraglide/messages'
+import { getUser } from '@repo/app/src/lib/users'
 
 /**
  * Cross-platform user detail. Reads the `id` route param via
@@ -16,10 +17,10 @@ export function UserDetailScreen() {
   if (!user) {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>User not found</Text>
-        <Text style={styles.meta}>No user with id “{id}”.</Text>
+        <Text style={styles.title}>{m["features.users.notFound"]()}</Text>
+        <Text style={styles.meta}>{m["features.users.noUserWithId"]({ id })}</Text>
         <Button variant="secondary" onPress={() => router.back()}>
-          Go back
+          {m["features.users.goBack"]()}
         </Button>
       </View>
     )
@@ -34,7 +35,7 @@ export function UserDetailScreen() {
       <Text style={styles.bio}>{user.bio}</Text>
 
       <Button variant="secondary" onPress={() => router.back()}>
-        ← Back
+        {m["features.users.back"]()}
       </Button>
     </View>
   )

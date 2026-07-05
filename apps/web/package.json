@@ -17,7 +17,6 @@
     "@faker-js/faker": "^10.3.0",
     "@repo/app": "workspace:*",
     "@repo/navigation": "workspace:*",
-    "@repo/ui": "workspace:*",
     "@tanstack/match-sorter-utils": "latest",
     "@tanstack/react-devtools": "latest",
     "@tanstack/react-form": "latest",
@@ -37,9 +36,9 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@inlang/paraglide-js": "^2.20.2",
     "@rolldown/plugin-babel": "^0.2.3",
     "@tailwindcss/vite": "^4.3.2",
-    "tailwindcss": "^4.3.2",
     "@tanstack/devtools-vite": "latest",
     "@tanstack/router-cli": "^1.132.0",
     "@testing-library/dom": "^10.4.1",
@@ -50,6 +49,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "babel-plugin-react-compiler": "^1.0.0",
     "jsdom": "^28.1.0",
+    "tailwindcss": "^4.3.2",
     "typescript": "^6.0.2",
     "vite": "^8.0.0",
     "vite-plugin-rnw": "^0.0.11",

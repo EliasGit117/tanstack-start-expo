@@ -1,0 +1,21 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "features": {
+    "home": {
+      "title": "Общий экран, все платформы",
+      "subtitle": "Экраны {app}, компоненты {ui}, ссылки {navigation}.",
+      "pressed": "Нажато {count} раз",
+      "reset": "Сбросить",
+      "viewUsers": "Пользователи →"
+    },
+    "users": {
+      "title": "Пользователи",
+      "details": "Подробнее →",
+      "backHome": "← Домой",
+      "notFound": "Пользователь не найден",
+      "noUserWithId": "Нет пользователя с id \"{id}\".",
+      "back": "← Назад",
+      "goBack": "Назад"
+    }
+  }
+}
