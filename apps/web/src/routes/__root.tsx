@@ -45,35 +45,35 @@ function RootDocument({ children }: { children: ReactNode }) {
       <HeadContent/><title></title>
     </head>
     <body>
-    <View className="flex flex-row items-center gap-2 px-4 py-2">
+    <View className="flex flex-row items-center gap-4 px-4 py-2">
       <Link
         to="/"
-        className={buttonVariants({ variant: 'link', className: 'flex px-1 py-1' })}
-        activeProps={{ className: 'underline underline-offset-4' }}
+        className={buttonVariants({ variant: 'link', className: 'flex px-0.5 py-0.5' })}
+        activeProps={{ 'data-active': 'true' }}
       >
         <Text className={buttonTextVariants({ variant: 'link' })}>Home</Text>
       </Link>
 
       <Link
         to="/rsc"
-        className={buttonVariants({ variant: 'link', className: 'flex px-1 py-1' })}
-        activeProps={{ className: 'underline underline-offset-4' }}
+        className={buttonVariants({ variant: 'link', className: 'flex px-0.5 py-0.5' })}
+        activeProps={{ 'data-active': 'true' }}
       >
         <Text className={buttonTextVariants({ variant: 'link' })}>RSC</Text>
       </Link>
 
       <Link
         to="/blog"
-        className={buttonVariants({ variant: 'link', className: 'flex px-1 py-1' })}
-        activeProps={{ className: 'underline underline-offset-4' }}
+        className={buttonVariants({ variant: 'link', className: 'flex px-0.5 py-0.5' })}
+        activeProps={{ 'data-active': 'true' }}
       >
         <Text className={buttonTextVariants({ variant: 'link' })}>Blog</Text>
       </Link>
 
       <Link
         to="/settings"
-        className={buttonVariants({ variant: 'link', className: 'flex px-1 py-1' })}
-        activeProps={{ className: 'underline underline-offset-4' }}
+        className={buttonVariants({ variant: 'link', className: 'flex px-0.5 py-0.5' })}
+        activeProps={{ 'data-active': 'true' }}
       >
         <Text className={buttonTextVariants({ variant: 'link' })}>Settings</Text>
       </Link>
