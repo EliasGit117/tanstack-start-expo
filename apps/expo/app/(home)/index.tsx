@@ -1,3 +1,3 @@
-import { HomeScreen } from '@repo/app'
+import { HomeScreen } from '@repo/app/src/features/home/screen';
 
-export default HomeScreen
+export default HomeScreen;

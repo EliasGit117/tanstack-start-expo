@@ -10,8 +10,10 @@ import type { QueryClient } from '@tanstack/react-query';
 import { ReactNativeWebStyleTag } from '@/components/style-tag.tsx';
 import { View } from 'react-native';
 import appCss from '../styles.css?url';
-import { StyleSheet } from 'react-native';
 import { getLocale } from '@repo/app/src/paraglide/runtime';
+import { buttonTextVariants, buttonVariants } from '@repo/app/src/components/ui/button';
+import { Text } from '@repo/app/src/components/ui/text';
+import type { ReactNode } from 'react';
 
 
 interface IRouterContext {
@@ -29,10 +31,11 @@ export const Route = createRootRouteWithContext<IRouterContext>()({
       { rel: 'stylesheet', href: appCss }
     ]
   }),
-  shellComponent: RootDocument
+  shellComponent: RootDocument,
+  notFoundComponent: () => <p>Not Found</p>
 });
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument({ children }: { children: ReactNode }) {
   const locale = getLocale();
 
   return (
@@ -42,15 +45,37 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <HeadContent/><title></title>
     </head>
     <body>
-    <View style={styles.container}>
-      <Link to="/">
-        Home
+    <View className="flex flex-row items-center gap-2 px-4 py-2">
+      <Link
+        to="/"
+        className={buttonVariants({ variant: 'link', className: 'flex px-1 py-1' })}
+        activeProps={{ className: 'underline underline-offset-4' }}
+      >
+        <Text className={buttonTextVariants({ variant: 'link' })}>Home</Text>
       </Link>
-      <Link to="/rsc">
-        RSC
+
+      <Link
+        to="/rsc"
+        className={buttonVariants({ variant: 'link', className: 'flex px-1 py-1' })}
+        activeProps={{ className: 'underline underline-offset-4' }}
+      >
+        <Text className={buttonTextVariants({ variant: 'link' })}>RSC</Text>
       </Link>
-      <Link to="/settings">
-        Settings
+
+      <Link
+        to="/blog"
+        className={buttonVariants({ variant: 'link', className: 'flex px-1 py-1' })}
+        activeProps={{ className: 'underline underline-offset-4' }}
+      >
+        <Text className={buttonTextVariants({ variant: 'link' })}>Blog</Text>
+      </Link>
+
+      <Link
+        to="/settings"
+        className={buttonVariants({ variant: 'link', className: 'flex px-1 py-1' })}
+        activeProps={{ className: 'underline underline-offset-4' }}
+      >
+        <Text className={buttonTextVariants({ variant: 'link' })}>Settings</Text>
       </Link>
     </View>
     {children}
@@ -67,14 +92,3 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-    gap: 16,
-    alignItems: 'flex-start',
-    display: 'flex',
-    flexDirection: 'row'
-  }
-});

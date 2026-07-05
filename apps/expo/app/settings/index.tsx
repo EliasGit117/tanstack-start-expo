@@ -1,3 +1,3 @@
-import { SettingsScreen } from '@repo/app'
+import { SettingsScreen } from '@repo/app/src/features/settings/screen';
 
-export default SettingsScreen
+export default SettingsScreen;
