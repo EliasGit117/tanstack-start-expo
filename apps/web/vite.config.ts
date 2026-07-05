@@ -6,6 +6,8 @@ import babel from '@rolldown/plugin-babel';
 import { rnw } from 'vite-plugin-rnw';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import { nitro } from 'nitro/vite';
+import { cjsInterop } from 'vite-plugin-cjs-interop';
+import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 
 
 const config = defineConfig({
@@ -18,7 +20,11 @@ const config = defineConfig({
   ssr: { noExternal: ['nativewind', 'react-native-css-interop', 'react-native-safe-area-context', /^@rn-primitives\//] },
   plugins: [
     devtools(),
-    cssInteropSsrFix(),
+    cjsInterop({ dependencies: ['nativewind/**', 'react-native-css-interop/**', 'inline-style-prefixer/**'] }),
+    // Converts css-interop's lazy `require("./components")` (and any other CJS
+    // requires in the package) to static imports so the ESM-only SSR module
+    // runner can execute it in dev.
+    viteCommonjs({ include: ['react-native-css-interop'] }),
     paraglideVitePlugin({
       project: '../../packages/app/project.inlang',
       outdir: '../../packages/app/src/paraglide',
@@ -38,25 +44,14 @@ const config = defineConfig({
 
 
 function getNativeWindAliases(): Record<string, string> {
-  // NativeWind's published jsx runtime is CJS and requires `react-native`
-  // at runtime, which breaks both the SSR module runner (ESM-only) and
-  // bun's transpiler (RN ships Flow source). Point the jsx runtime at
-  // react-native-css-interop's TypeScript source instead so it flows
-  // through Vite, where `react-native` is aliased to react-native-web.
+  // NativeWind's published jsx runtime is CJS and requires `react-native`at runtime,
+  // which breaks both the SSR module runner (ESM-only) and bun's transpiler (RN ships Flow source).
+  // Point the jsx runtime at react-native-css-interop's TypeScript source instead so it flows through Vite,
+  // where `react-native` is aliased to react-native-web.
 
   return {
     'nativewind/jsx-dev-runtime': 'react-native-css-interop/src/runtime/jsx-dev-runtime',
     'nativewind/jsx-runtime': 'react-native-css-interop/src/runtime/jsx-runtime'
-  };
-}
-
-function cssInteropSsrFix() {
-  return {
-    name: 'css-interop-ssr-fix',
-    transform(code: string, id: string) {
-      if (id.includes('react-native-css-interop/src/runtime/wrap-jsx'))
-        return ('import "./components";\n' + code.replace('if (process.env.NODE_ENV !== "test") require("./components");', ''));
-    }
   };
 }
 
