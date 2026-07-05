@@ -5,6 +5,7 @@ import { reactCompilerPreset } from '@vitejs/plugin-react';
 import babel from '@rolldown/plugin-babel';
 import { rnw } from 'vite-plugin-rnw';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
+import { nitro } from 'nitro/vite';
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
@@ -17,6 +18,7 @@ const config = defineConfig({
       cookieName: 'lang',
     }),
     tanstackStart(),
+    nitro(),
     rnw(),
     babel({ presets: [reactCompilerPreset()] })
   ]

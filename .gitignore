@@ -11,6 +11,9 @@ dist-ssr
 .vinxi
 __unconfig*
 todos.json
+.idea
+.vscode
+.claude
 
 # expo / react-native
 .expo
