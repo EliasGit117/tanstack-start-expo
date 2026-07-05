@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button } from '@repo/app/src/components/ui/button'
 import { TextLink } from '@repo/navigation'
 import { m } from '@repo/app/src/paraglide/messages'
@@ -15,7 +15,7 @@ export function HomeScreen() {
   const locale= getLocale();
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
       <Text style={styles.title}>{m["features.home.title"]()}</Text>
       <Text style={styles.subtitle}>
         {m["features.home.subtitle"]({ app: '@repo/app', ui: 'components/ui', navigation: '@repo/navigation' })}
@@ -39,13 +39,13 @@ export function HomeScreen() {
       </Button>
 
       <TextLink href="/users">{m["features.home.viewUsers"]()}</TextLink>
-    </View>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 32,
+    padding: Platform.OS === 'ios' ? 24 : 16,
     gap: 16,
     alignItems: 'flex-start',
   },
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   subtitle: {

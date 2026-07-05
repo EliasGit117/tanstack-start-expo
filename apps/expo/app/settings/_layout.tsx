@@ -3,7 +3,7 @@ import { m } from '@repo/app'
 
 export default function SettingsLayout() {
   return (
-    <Stack>
+    <Stack screenOptions={{ headerLargeTitle: true }}>
       <Stack.Screen name="index" options={{ title: m['features.settings.title']() }} />
     </Stack>
   )

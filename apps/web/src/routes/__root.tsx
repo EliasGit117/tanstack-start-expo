@@ -70,7 +70,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 32,
+    paddingHorizontal: 16,
     paddingVertical: 16,
     gap: 16,
     alignItems: 'flex-start',

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { TextLink } from '@repo/navigation'
 import { m } from '@repo/app/src/paraglide/messages'
 import { USERS } from '@repo/app/src/lib/users'
@@ -6,7 +6,7 @@ import { USERS } from '@repo/app/src/lib/users'
 /** Cross-platform user list. Each row links to the detail screen. */
 export function UserListScreen() {
   return (
-    <View style={styles.container}>
+    <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
       <Text style={styles.title}>{m["features.users.title"]()}</Text>
 
       <View style={styles.list}>
@@ -26,7 +26,7 @@ export function UserListScreen() {
       <TextLink href="/" dismissTo>
         {m["features.users.backHome"]()}
       </TextLink>
-    </View>
+    </ScrollView>
   )
 }
 
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   list: {

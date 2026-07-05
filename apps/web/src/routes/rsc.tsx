@@ -32,7 +32,7 @@ function RscTest() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 32,
+    paddingHorizontal: 16,
     gap: 12,
     alignItems: 'flex-start',
   },

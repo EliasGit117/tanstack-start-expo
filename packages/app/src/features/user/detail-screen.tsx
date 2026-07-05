@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text } from 'react-native'
 import { Button } from '@repo/app/src/components/ui/button'
 import { useParams, useRouter } from '@repo/navigation'
 import { m } from '@repo/app/src/paraglide/messages'
@@ -16,18 +16,18 @@ export function UserDetailScreen() {
 
   if (!user) {
     return (
-      <View style={styles.container}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
         <Text style={styles.title}>{m["features.users.notFound"]()}</Text>
         <Text style={styles.meta}>{m["features.users.noUserWithId"]({ id })}</Text>
         <Button variant="secondary" onPress={() => router.back()}>
           {m["features.users.goBack"]()}
         </Button>
-      </View>
+      </ScrollView>
     )
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
       <Text style={styles.title}>{user.name}</Text>
       <Text style={styles.meta}>
         {user.role} · {user.email}
@@ -37,18 +37,18 @@ export function UserDetailScreen() {
       <Button variant="secondary" onPress={() => router.back()}>
         {m["features.users.back"]()}
       </Button>
-    </View>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 32,
+    padding: 16,
     gap: 16,
     alignItems: 'flex-start',
   },
   title: {
-    fontSize: 32,
+    fontSize: 25,
     fontWeight: 'bold',
   },
   meta: {
