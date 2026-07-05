@@ -1,16 +1,21 @@
-import { Stack } from 'expo-router'
+import { NativeTabs } from 'expo-router/unstable-native-tabs'
 import { StatusBar } from 'expo-status-bar'
-import { Provider } from '@repo/app'
+import { Providers, m } from '@repo/app'
 
 export default function RootLayout() {
   return (
-    <Provider>
-      <Stack>
-        <Stack.Screen name="index" options={{ title: 'Home' }} />
-        <Stack.Screen name="users/index" options={{ title: 'Users' }} />
-        <Stack.Screen name="users/[id]" options={{ title: 'User' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </Provider>
+    <Providers>
+      <NativeTabs>
+        <NativeTabs.Trigger name="(home)">
+          <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
+          <NativeTabs.Trigger.Label>{m['features.home.tab']()}</NativeTabs.Trigger.Label>
+        </NativeTabs.Trigger>
+        <NativeTabs.Trigger name="settings">
+          <NativeTabs.Trigger.Icon sf="gearshape.fill" md="settings" />
+          <NativeTabs.Trigger.Label>{m['features.settings.title']()}</NativeTabs.Trigger.Label>
+        </NativeTabs.Trigger>
+      </NativeTabs>
+      <StatusBar style="dark" />
+    </Providers>
   )
 }

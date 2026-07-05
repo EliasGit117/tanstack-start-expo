@@ -2,11 +2,16 @@
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "features": {
     "home": {
+      "tab": "Acasă",
       "title": "Ecran partajat, pe toate platformele",
       "subtitle": "Ecrane {app}, componente {ui}, linkuri {navigation}.",
       "pressed": "Apăsat de {count} ori",
       "reset": "Resetează",
       "viewUsers": "Vezi utilizatorii →"
+    },
+    "settings": {
+      "title": "Setări",
+      "resetLocale": "Resetează limba la cea a dispozitivului"
     },
     "users": {
       "title": "Utilizatori",

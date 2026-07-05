@@ -6,11 +6,11 @@
     "packages/*"
   ],
   "scripts": {
-    "web": "cd apps/web && bun run dev",
-    "expo": "cd apps/expo && bun run start",
-    "ios": "cd apps/expo && bun run ios",
-    "android": "cd apps/expo && bun run android",
-    "build:web": "cd apps/web && bun run build",
+    "web:dev": "cd apps/web && bun run dev",
+    "web:build": "cd apps/web && bun run build",
+    "expo:start": "cd apps/expo && bun run start",
+    "expo:ios": "cd apps/expo && bun run ios",
+    "expo:android": "cd apps/expo && bun run android",
     "test": "bun --filter '*' test"
   },
   "trustedDependencies": [

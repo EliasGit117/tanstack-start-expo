@@ -17,7 +17,9 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-localization",
+      "expo-secure-store"
     ],
     "experiments": {
       "reactCompiler": true

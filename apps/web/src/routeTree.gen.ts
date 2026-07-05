@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as RscRouteImport } from './routes/rsc'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UsersIndexRouteImport } from './routes/users.index'
 import { Route as UsersIdRouteImport } from './routes/users.$id'
 
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RscRoute = RscRouteImport.update({
   id: '/rsc',
   path: '/rsc',
@@ -38,12 +44,14 @@ const UsersIdRoute = UsersIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/rsc': typeof RscRoute
+  '/settings': typeof SettingsRoute
   '/users/$id': typeof UsersIdRoute
   '/users/': typeof UsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/rsc': typeof RscRoute
+  '/settings': typeof SettingsRoute
   '/users/$id': typeof UsersIdRoute
   '/users': typeof UsersIndexRoute
 }
@@ -51,26 +59,35 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/rsc': typeof RscRoute
+  '/settings': typeof SettingsRoute
   '/users/$id': typeof UsersIdRoute
   '/users/': typeof UsersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/rsc' | '/users/$id' | '/users/'
+  fullPaths: '/' | '/rsc' | '/settings' | '/users/$id' | '/users/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/rsc' | '/users/$id' | '/users'
-  id: '__root__' | '/' | '/rsc' | '/users/$id' | '/users/'
+  to: '/' | '/rsc' | '/settings' | '/users/$id' | '/users'
+  id: '__root__' | '/' | '/rsc' | '/settings' | '/users/$id' | '/users/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   RscRoute: typeof RscRoute
+  SettingsRoute: typeof SettingsRoute
   UsersIdRoute: typeof UsersIdRoute
   UsersIndexRoute: typeof UsersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rsc': {
       id: '/rsc'
       path: '/rsc'
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   RscRoute: RscRoute,
+  SettingsRoute: SettingsRoute,
   UsersIdRoute: UsersIdRoute,
   UsersIndexRoute: UsersIndexRoute,
 }

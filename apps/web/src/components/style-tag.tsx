@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export function ReactNativeWebStyleTag() {
-  if (typeof document != null)
+  if (typeof document != 'undefined')
     return null;
 
   const sheet = StyleSheet.getSheet();

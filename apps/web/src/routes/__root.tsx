@@ -45,6 +45,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Link to="/rsc">
           RSC
         </Link>
+        <Link to="/settings">
+          Settings
+        </Link>
       </View>
       {children}
     <Scripts/>

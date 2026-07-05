@@ -2,11 +2,16 @@
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "features": {
     "home": {
+      "tab": "Home",
       "title": "Shared screen, every platform",
       "subtitle": "{app} screens, {ui} components, {navigation} links.",
       "pressed": "Pressed {count} times",
       "reset": "Reset",
       "viewUsers": "View users →"
+    },
+    "settings": {
+      "title": "Settings",
+      "resetLocale": "Reset language to device default"
     },
     "users": {
       "title": "Users",

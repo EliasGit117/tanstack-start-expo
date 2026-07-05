@@ -2,11 +2,16 @@
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "features": {
     "home": {
+      "tab": "Главная",
       "title": "Общий экран, все платформы",
       "subtitle": "Экраны {app}, компоненты {ui}, ссылки {navigation}.",
       "pressed": "Нажато {count} раз",
       "reset": "Сбросить",
       "viewUsers": "Пользователи →"
+    },
+    "settings": {
+      "title": "Настройки",
+      "resetLocale": "Сбросить язык на язык устройства"
     },
     "users": {
       "title": "Пользователи",

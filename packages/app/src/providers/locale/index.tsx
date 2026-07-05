@@ -1,40 +1,61 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
-import { baseLocale, overwriteGetLocale, type Locale } from '@repo/app/src/paraglide/runtime';
+import { Fragment, useEffect, useState, type ReactNode } from 'react';
+import { getLocales } from 'expo-localization';
+import * as SecureStore from 'expo-secure-store';
+import {
+  baseLocale,
+  locales,
+  overwriteGetLocale,
+  overwriteSetLocale,
+  type Locale, isLocale
+} from '@repo/app/src/paraglide/runtime';
 
 
-interface ILocaleContextValue {
-  locale: Locale;
-  setLocale: (locale: Locale) => void;
-}
+const LOCALE_KEY = 'locale';
 
-let currentLocale: Locale = baseLocale;
+let currentLocale: Locale = getInitialLocale();
+let notify: (locale: Locale) => void = () => null;
+
 overwriteGetLocale(() => currentLocale);
-
-
-const LocaleContext = createContext<ILocaleContextValue>({
-  locale: baseLocale,
-  setLocale: () => {}
+overwriteSetLocale((locale) => {
+  currentLocale = locale;
+  SecureStore.setItem(LOCALE_KEY, locale);
+  notify(locale);
 });
+
+export function resetLocale() {
+  SecureStore.deleteItemAsync(LOCALE_KEY).catch(() => null);
+  currentLocale = getDeviceLocale();
+  notify(currentLocale);
+}
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(currentLocale);
 
-  const setLocale = (locale: Locale) => {
-    currentLocale = locale;
-    setLocaleState(locale);
-  };
+  useEffect(() => {
+    notify = setLocaleState;
+
+    return () => {
+      notify = () => null;
+    };
+  }, []);
 
   return (
-    <LocaleContext.Provider value={{ locale: locale, setLocale: setLocale, }}>
+    <Fragment key={locale}>
       {children}
-    </LocaleContext.Provider>
+    </Fragment>
   );
 }
 
-export function useLocale() {
-  const context = useContext(LocaleContext);
-  if (!context)
-    throw new Error('useLocale must be used within LocaleProvider');
 
-  return context;
+function getInitialLocale(): Locale {
+  const stored = SecureStore.getItem(LOCALE_KEY);
+  if (isLocale(stored))
+    return stored;
+
+  return getDeviceLocale();
+}
+
+function getDeviceLocale(): Locale {
+  const code = getLocales()[0]?.languageCode;
+  return locales.find((locale) => locale === code) ?? baseLocale;
 }
