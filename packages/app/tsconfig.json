@@ -12,5 +12,5 @@
     "esModuleInterop": true,
     "types": ["react", "react-native"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "nativewind-env.d.ts"]
 }

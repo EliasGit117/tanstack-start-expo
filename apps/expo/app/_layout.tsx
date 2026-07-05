@@ -1,3 +1,4 @@
+import '../global.css'
 import { NativeTabs } from 'expo-router/unstable-native-tabs'
 import { StatusBar } from 'expo-status-bar'
 import { Providers, m } from '@repo/app'

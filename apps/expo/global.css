@@ -58,18 +58,3 @@
     --chart-5: 340 75% 55%;
   }
 }
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body,
-#app {
-  font-family: 'Roboto', sans-serif;
-  min-height: 100%;
-}
-
-body {
-  margin: 0;
-}

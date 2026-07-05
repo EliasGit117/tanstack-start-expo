@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { Button } from '@repo/app/src/components/ui/button'
+import { Text } from '@repo/app/src/components/ui/text'
 import { TextLink } from '@repo/navigation'
 import { m } from '@repo/app/src/paraglide/messages'
 import { locales } from '@repo/app/src/paraglide/runtime'
@@ -12,30 +13,33 @@ import { getLocale, setLocale } from '@repo/app/src/paraglide/runtime';
  */
 export function HomeScreen() {
   const [count, setCount] = useState(0)
-  const locale= getLocale();
+  const locale = getLocale();
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
-      <Text style={styles.title}>{m["features.home.title"]()}</Text>
-      <Text style={styles.subtitle}>
+      <Text variant="h3">{m["features.home.title"]()}</Text>
+      <Text variant="muted">
         {m["features.home.subtitle"]({ app: '@repo/app', ui: 'components/ui', navigation: '@repo/navigation' })}
       </Text>
 
-      <View style={styles.row}>
+      <View className="flex-row gap-2">
         {locales.map((l) => (
           <Button
             key={l}
-            variant={l === locale ? 'primary' : 'secondary'}
+            size="sm"
+            variant={l === locale ? 'default' : 'outline'}
             onPress={() => setLocale(l)}
           >
-            {l.toUpperCase()}
+            <Text>{l.toUpperCase()}</Text>
           </Button>
         ))}
       </View>
 
-      <Button onPress={() => setCount((c) => c + 1)}>{m["features.home.pressed"]({ count })}</Button>
-      <Button variant="secondary" onPress={() => setCount(0)}>
-        {m["features.home.reset"]()}
+      <Button onPress={() => setCount((c) => c + 1)}>
+        <Text>{m["features.home.pressed"]({ count })}</Text>
+      </Button>
+      <Button variant="outline" onPress={() => setCount(0)}>
+        <Text>{m["features.home.reset"]()}</Text>
       </Button>
 
       <TextLink href="/users">{m["features.home.viewUsers"]()}</TextLink>
@@ -48,17 +52,5 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 24 : 16,
     gap: 16,
     alignItems: 'flex-start',
-  },
-  row: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#444',
   },
 })

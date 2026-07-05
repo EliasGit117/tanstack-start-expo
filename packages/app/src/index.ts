@@ -1,3 +1,6 @@
+export { Button, buttonVariants, buttonTextVariants, type ButtonProps } from './components/ui/button'
+export { Text, TextClassContext } from './components/ui/text'
+export { cn } from './lib/utils'
 export { HomeScreen } from './features/home/screen'
 export { SettingsScreen } from './features/settings/screen'
 export { UserListScreen } from './features/user/list-screen'

@@ -1,5 +1,6 @@
-import { ScrollView, StyleSheet, Text } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import { Button } from '@repo/app/src/components/ui/button'
+import { Text } from '@repo/app/src/components/ui/text'
 import { useParams, useRouter } from '@repo/navigation'
 import { m } from '@repo/app/src/paraglide/messages'
 import { getUser } from '@repo/app/src/lib/users'
@@ -17,10 +18,10 @@ export function UserDetailScreen() {
   if (!user) {
     return (
       <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
-        <Text style={styles.title}>{m["features.users.notFound"]()}</Text>
-        <Text style={styles.meta}>{m["features.users.noUserWithId"]({ id })}</Text>
-        <Button variant="secondary" onPress={() => router.back()}>
-          {m["features.users.goBack"]()}
+        <Text variant="h3">{m["features.users.notFound"]()}</Text>
+        <Text variant="muted">{m["features.users.noUserWithId"]({ id })}</Text>
+        <Button variant="outline" onPress={() => router.back()}>
+          <Text>{m["features.users.goBack"]()}</Text>
         </Button>
       </ScrollView>
     )
@@ -28,14 +29,14 @@ export function UserDetailScreen() {
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
-      <Text style={styles.title}>{user.name}</Text>
-      <Text style={styles.meta}>
+      <Text variant="h3">{user.name}</Text>
+      <Text variant="muted">
         {user.role} · {user.email}
       </Text>
-      <Text style={styles.bio}>{user.bio}</Text>
+      <Text className="max-w-[480px] leading-6">{user.bio}</Text>
 
-      <Button variant="secondary" onPress={() => router.back()}>
-        {m["features.users.back"]()}
+      <Button variant="outline" onPress={() => router.back()}>
+        <Text>{m["features.users.back"]()}</Text>
       </Button>
     </ScrollView>
   )
@@ -46,18 +47,5 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 16,
     alignItems: 'flex-start',
-  },
-  title: {
-    fontSize: 25,
-    fontWeight: 'bold',
-  },
-  meta: {
-    fontSize: 16,
-    color: '#666',
-  },
-  bio: {
-    fontSize: 16,
-    lineHeight: 24,
-    maxWidth: 480,
   },
 })

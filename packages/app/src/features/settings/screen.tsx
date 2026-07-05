@@ -1,5 +1,6 @@
-import { Platform, ScrollView, StyleSheet, Text } from 'react-native';
+import { Platform, ScrollView, StyleSheet } from 'react-native';
 import { Button } from '@repo/app/src/components/ui/button'
+import { Text } from '@repo/app/src/components/ui/text'
 import { m } from '@repo/app/src/paraglide/messages'
 import { resetLocale } from '@repo/app/src/providers/locale'
 
@@ -10,9 +11,9 @@ import { resetLocale } from '@repo/app/src/providers/locale'
 export function SettingsScreen() {
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
-      {Platform.OS === 'web' && <Text style={styles.title}>{m["features.settings.title"]()}</Text>}
-      <Button variant="secondary" onPress={() => resetLocale()}>
-        {m["features.settings.resetLocale"]()}
+      {Platform.OS === 'web' && <Text variant="h3">{m["features.settings.title"]()}</Text>}
+      <Button variant="outline" onPress={() => resetLocale()}>
+        <Text>{m["features.settings.resetLocale"]()}</Text>
       </Button>
     </ScrollView>
   )
@@ -23,9 +24,5 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 24 : 16,
     gap: 16,
     alignItems: 'flex-start',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
   },
 })

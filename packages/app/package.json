@@ -9,7 +9,13 @@
     "i18n:compile": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide"
   },
   "dependencies": {
-    "@repo/navigation": "workspace:*"
+    "@repo/navigation": "workspace:*",
+    "@rn-primitives/portal": "^1.4.0",
+    "@rn-primitives/slot": "^1.4.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "nativewind": "^4.2.5",
+    "tailwind-merge": "^3.6.0"
   },
   "peerDependencies": {
     "react": "*",
@@ -20,6 +26,8 @@
     "@types/react": "^19.2.0",
     "react": "^19.2.0",
     "react-native": "0.85.3",
+    "tailwindcss": "^3.4.19",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "^6.0.2"
   }
 }
