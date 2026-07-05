@@ -1,5 +1,5 @@
 {
-  "name": "tanstack-rnw-monorepo",
+  "name": "tanstack-start-expo",
   "private": true,
   "workspaces": [
     "apps/*",
