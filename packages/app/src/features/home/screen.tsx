@@ -15,6 +15,7 @@ import { m } from '@repo/app/src/paraglide/messages';
 import { isLocale, locales } from '@repo/app/src/paraglide/runtime';
 import { getLocale, setLocale } from '@repo/app/src/paraglide/runtime';
 import { ToggleGroup, ToggleGroupItem } from '../../components/ui/toggle-group';
+import { HeartIcon, TimerResetIcon } from 'lucide-react-native';
 
 /**
  * Cross-platform Home screen. Rendered by the TanStack Start route on web
@@ -66,6 +67,7 @@ export function HomeScreen() {
             <Text>{m['features.home.pressed']({ count })}</Text>
           </Button>
           <Button className="w-full" variant="outline" onPress={() => setCount(0)}>
+            <TimerResetIcon/>
             <Text>{m['features.home.reset']()}</Text>
           </Button>
         </CardFooter>

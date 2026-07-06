@@ -22,7 +22,7 @@ export default defineConfig({
   plugins: [
     devtools(),
     cjsInterop({ dependencies: ['react-native-css-interop/**'] }),
-    viteCommonjs({ include: ['react-native-css-interop'] }),
+    viteCommonjs({ include: ['react-native-css-interop', 'react-native-svg'] }),
     paraglideVitePlugin({
       project: '../../packages/app/project.inlang',
       outdir: '../../packages/app/src/paraglide',
@@ -34,11 +34,12 @@ export default defineConfig({
     rnw({
       jsxImportSource: 'nativewind',
       include: /\.(mjs|[tj]sx?)$/,
-      exclude: /\/node_modules\/(?!react-native|@react-native|expo|@expo|@rn-primitives|nativewind)/
+      exclude: /\/node_modules\/(?!react-native|@react-native|expo|@expo|@rn-primitives|nativewind|react-native-svg|lucide-react-native)/
     }),
     babel({ presets: [reactCompilerPreset()] })
   ],
   optimizeDeps: {
+    include: ['react-native-svg', 'lucide-react-native'],
     exclude: ['nativewind', 'react-native-css-interop']
   },
   ssr: {
@@ -46,6 +47,8 @@ export default defineConfig({
       'nativewind',
       'react-native-css-interop',
       'react-native-safe-area-context',
+      'lucide-react-native',
+      'react-native-svg',
       /^@rn-primitives\//
     ]
   }
