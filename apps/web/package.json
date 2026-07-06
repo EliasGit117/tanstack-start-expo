@@ -32,8 +32,8 @@
     "lucide-react": "^0.545.0",
     "nativewind": "^4.2.5",
     "nitro": "^3.0.260610-beta",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-native-web": "^0.21.2",
     "zod": "^4.3.6"
   },
