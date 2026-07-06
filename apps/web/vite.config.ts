@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { type AliasOptions, defineConfig } from 'vite';
 import { devtools } from '@tanstack/devtools-vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import { reactCompilerPreset } from '@vitejs/plugin-react';
@@ -43,16 +43,20 @@ const config = defineConfig({
 });
 
 
-function getNativeWindAliases(): Record<string, string> {
+function getNativeWindAliases(): AliasOptions {
   // NativeWind's published jsx runtime is CJS and requires `react-native`at runtime,
   // which breaks both the SSR module runner (ESM-only) and bun's transpiler (RN ships Flow source).
   // Point the jsx runtime at react-native-css-interop's TypeScript source instead so it flows through Vite,
   // where `react-native` is aliased to react-native-web.
 
-  return {
-    'nativewind/jsx-dev-runtime': 'react-native-css-interop/src/runtime/jsx-dev-runtime',
-    'nativewind/jsx-runtime': 'react-native-css-interop/src/runtime/jsx-runtime'
-  };
+  return [
+    { find: 'nativewind/jsx-dev-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-dev-runtime' },
+    { find: 'nativewind/jsx-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-runtime' },
+    // Bare imports resolve to dist/index.js (CJS), which neither the SSR module
+    // runner nor the browser can execute. Point them at the TypeScript source.
+    // Regex so subpath imports (e.g. the jsx runtime above) are left untouched.
+    { find: /^react-native-css-interop$/, replacement: 'react-native-css-interop/src/index' }
+  ];
 }
 
 export default config;

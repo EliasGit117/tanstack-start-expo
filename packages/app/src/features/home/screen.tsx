@@ -12,8 +12,9 @@ import {
 } from '@repo/app/src/components/ui/card';
 import { TextLink } from '@repo/navigation';
 import { m } from '@repo/app/src/paraglide/messages';
-import { locales } from '@repo/app/src/paraglide/runtime';
+import { isLocale, locales } from '@repo/app/src/paraglide/runtime';
 import { getLocale, setLocale } from '@repo/app/src/paraglide/runtime';
+import { ToggleGroup, ToggleGroupItem } from '../../components/ui/toggle-group';
 
 /**
  * Cross-platform Home screen. Rendered by the TanStack Start route on web
@@ -25,7 +26,7 @@ export function HomeScreen() {
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
-      <Card>
+      <Card className="max-w-sm">
         <CardHeader>
           <CardTitle>{m['features.home.title']()}</CardTitle>
           <CardDescription>
@@ -33,24 +34,38 @@ export function HomeScreen() {
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="flex-row gap-2">
-          {locales.map((l) => (
-            <Button
-              key={l}
-              size="sm"
-              variant={l === locale ? 'default' : 'outline'}
-              onPress={() => setLocale(l)}
-            >
-              <Text>{l.toUpperCase()}</Text>
-            </Button>
-          ))}
+        <CardContent className="flex-col gap-2">
+          <Text>Locale</Text>
+          <ToggleGroup
+            variant="outline"
+            type="single"
+            value={locale}
+            onValueChange={(newValue) => {
+              if (!isLocale(newValue))
+                return;
+
+              setLocale(newValue);
+            }}
+          >
+            {locales.map((item, index) => (
+              <ToggleGroupItem
+                value={item}
+                aria-label={`Select "${item}"`}
+                isLast={index === locales.length - 1}
+                isFirst={index === 0}
+                key={item}
+              >
+                <Text>{item.toUpperCase()}</Text>
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
         </CardContent>
 
-        <CardFooter className="flex flex-col sm:flex-row gap-2">
-          <Button onPress={() => setCount((c) => c + 1)}>
+        <CardFooter className="flex flex-col sm:flex-row sm:web:justify-end gap-2">
+          <Button className="w-full web:w-fit" onPress={() => setCount((c) => c + 1)}>
             <Text>{m['features.home.pressed']({ count })}</Text>
           </Button>
-          <Button variant="outline" onPress={() => setCount(0)}>
+          <Button className="w-full web:w-fit" variant="outline" onPress={() => setCount(0)}>
             <Text>{m['features.home.reset']()}</Text>
           </Button>
         </CardFooter>
