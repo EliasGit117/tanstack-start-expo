@@ -61,11 +61,11 @@ export function HomeScreen() {
           </ToggleGroup>
         </CardContent>
 
-        <CardFooter className="flex flex-col sm:flex-row sm:web:justify-end gap-2">
-          <Button className="w-full web:w-fit" onPress={() => setCount((c) => c + 1)}>
+        <CardFooter className="flex flex-col gap-2">
+          <Button className="w-full" onPress={() => setCount((c) => c + 1)}>
             <Text>{m['features.home.pressed']({ count })}</Text>
           </Button>
-          <Button className="w-full web:w-fit" variant="outline" onPress={() => setCount(0)}>
+          <Button className="w-full" variant="outline" onPress={() => setCount(0)}>
             <Text>{m['features.home.reset']()}</Text>
           </Button>
         </CardFooter>
