@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Platform, ScrollView, StyleSheet, View } from 'react-native';
-import { Button } from '@repo/app/src/components/ui/button';
-import { Text } from '@repo/app/src/components/ui/text';
+import { Button } from '@app/components/ui/button';
+import { Text } from '@app/components/ui/text';
 import {
   Card,
   CardHeader,
@@ -9,14 +9,14 @@ import {
   CardDescription,
   CardContent,
   CardFooter
-} from '@repo/app/src/components/ui/card';
-import { TextLink } from '@repo/navigation';
-import { m } from '@repo/app/src/paraglide/messages';
-import { isLocale, locales } from '@repo/app/src/paraglide/runtime';
-import { getLocale, setLocale } from '@repo/app/src/paraglide/runtime';
-import { ToggleGroup, ToggleGroupItem } from '../../components/ui/toggle-group';
+} from '@app/components/ui/card';
+import { TextLink } from '@navigation';
+import { m } from '@app/paraglide/messages';
+import { isLocale, locales } from '@app/paraglide/runtime';
+import { getLocale, setLocale } from '@app/paraglide/runtime';
+import { ToggleGroup, ToggleGroupItem } from '@app/components/ui/toggle-group';
 import { TimerResetIcon } from 'lucide-react-native';
-import { Icon } from '@repo/app/src/components/ui/icon';
+import { Icon } from '@app/components/ui/icon';
 
 
 export function HomeScreen() {
@@ -29,7 +29,7 @@ export function HomeScreen() {
         <CardHeader>
           <CardTitle>{m['features.home.title']()}</CardTitle>
           <CardDescription>
-            {m['features.home.subtitle']({ app: '@repo/app', ui: 'components/ui', navigation: '@repo/navigation' })}
+            {m['features.home.subtitle']({ app: '@app', ui: 'components/ui', navigation: '@navigation' })}
           </CardDescription>
         </CardHeader>
 

@@ -9,7 +9,7 @@ import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import type { QueryClient } from '@tanstack/react-query';
 import { ReactNativeWebStyleTag } from '@/components/style-tag.tsx';
 import appCss from '../styles.css?url';
-import { getLocale } from '@repo/app/src/paraglide/runtime';
+import { getLocale } from '@app/paraglide/runtime';
 import type { ReactNode } from 'react';
 import { Header } from '@/components/header.tsx';
 

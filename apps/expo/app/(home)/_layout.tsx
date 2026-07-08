@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router'
-import { m } from '@repo/app'
+import { m } from '@app'
 
 export default function HomeLayout() {
   return (

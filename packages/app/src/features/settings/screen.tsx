@@ -1,8 +1,8 @@
 import { Platform, ScrollView, StyleSheet } from 'react-native';
-import { Button } from '@repo/app/src/components/ui/button'
-import { Text } from '@repo/app/src/components/ui/text'
-import { m } from '@repo/app/src/paraglide/messages'
-import { resetLocale } from '@repo/app/src/providers/locale'
+import { Button } from '@app/components/ui/button'
+import { Text } from '@app/components/ui/text'
+import { m } from '@app/paraglide/messages'
+import { resetLocale } from '@app/providers/locale'
 
 /**
  * Cross-platform Settings screen. Rendered by the TanStack Start route on web

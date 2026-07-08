@@ -1,8 +1,8 @@
 import { View } from 'react-native';
 import { Link } from '@tanstack/react-router';
-import { buttonTextVariants, buttonVariants } from '@repo/app/src/components/ui/button';
-import { Text } from '@repo/app/src/components/ui/text';
-import { cn } from '@repo/app/src/lib/utils';
+import { buttonTextVariants, buttonVariants } from '@app/components/ui/button';
+import { Text } from '@app/components/ui/text';
+import { cn } from '@app/lib/utils';
 import type { ComponentProps, FC } from 'react';
 
 

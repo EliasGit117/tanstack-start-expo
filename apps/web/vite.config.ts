@@ -1,4 +1,5 @@
 import { type AliasOptions, defineConfig } from 'vite';
+import path from 'node:path';
 import { devtools } from '@tanstack/devtools-vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import { reactCompilerPreset } from '@vitejs/plugin-react';
@@ -52,6 +53,9 @@ function getNativeWindAliases(): AliasOptions {
   return [
     { find: 'nativewind/jsx-dev-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-dev-runtime' },
     { find: 'nativewind/jsx-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-runtime' },
-    { find: /^react-native-css-interop$/, replacement: 'react-native-css-interop/src/index' }
+    { find: /^react-native-css-interop$/, replacement: 'react-native-css-interop/src/index' },
+    { find: /^@app\/(.*)/, replacement: path.resolve(__dirname, '../../packages/app/src/$1') },
+    { find: '@app', replacement: path.resolve(__dirname, '../../packages/app/src/index.ts') },
+    { find: '@navigation', replacement: path.resolve(__dirname, '../../packages/navigation/src/index.ts') }
   ];
 }

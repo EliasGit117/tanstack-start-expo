@@ -1,9 +1,9 @@
 import { ScrollView, View } from 'react-native'
-import { TextLink } from '@repo/navigation'
-import { m } from '@repo/app/src/paraglide/messages'
-import { USERS } from '@repo/app/src/lib/users'
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@repo/app/src/components/ui/card'
-import { Text } from '@repo/app/src/components/ui/text'
+import { TextLink } from '@navigation'
+import { m } from '@app/paraglide/messages'
+import { USERS } from '@app/lib/users'
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@app/components/ui/card'
+import { Text } from '@app/components/ui/text'
 
 export function UserListScreen() {
   return (

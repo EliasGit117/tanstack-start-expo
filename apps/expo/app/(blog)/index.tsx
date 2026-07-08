@@ -1,3 +1,3 @@
-import { BlogScreen } from '@repo/app/src/features/blog/screen';
+import { BlogScreen } from '@app/features/blog/screen';
 
 export default BlogScreen;

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { cookieName } from '@repo/app/src/paraglide/runtime';
+import { cookieName } from '@app/paraglide/runtime';
 
 // Vite plugin handles locale state
 export function LocaleProvider({ children }: { children: ReactNode }) {

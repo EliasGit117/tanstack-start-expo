@@ -1,5 +1,5 @@
 import { Platform, ScrollView, StyleSheet, View } from 'react-native';
-import { Text } from '@repo/app/src/components/ui/text';
+import { Text } from '@app/components/ui/text';
 import { Image } from 'react-native';
 
 

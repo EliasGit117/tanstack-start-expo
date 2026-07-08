@@ -1,13 +1,13 @@
 import { ScrollView, StyleSheet } from 'react-native'
-import { Button } from '@repo/app/src/components/ui/button'
-import { Text } from '@repo/app/src/components/ui/text'
-import { useParams, useRouter } from '@repo/navigation'
-import { m } from '@repo/app/src/paraglide/messages'
-import { getUser } from '@repo/app/src/lib/users'
+import { Button } from '@app/components/ui/button'
+import { Text } from '@app/components/ui/text'
+import { useParams, useRouter } from '@navigation'
+import { m } from '@app/paraglide/messages'
+import { getUser } from '@app/lib/users'
 
 /**
  * Cross-platform user detail. Reads the `id` route param via
- * @repo/navigation — `$id` on web (TanStack Router), `[id]` on native
+ * @navigation — `$id` on web (TanStack Router), `[id]` on native
  * (expo-router).
  */
 export function UserDetailScreen() {
