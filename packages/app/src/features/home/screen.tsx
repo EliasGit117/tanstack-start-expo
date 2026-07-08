@@ -16,6 +16,7 @@ import { isLocale, locales } from '@repo/app/src/paraglide/runtime';
 import { getLocale, setLocale } from '@repo/app/src/paraglide/runtime';
 import { ToggleGroup, ToggleGroupItem } from '../../components/ui/toggle-group';
 import { TimerResetIcon } from 'lucide-react-native';
+import { Icon } from '@repo/app/src/components/ui/icon';
 
 
 export function HomeScreen() {
@@ -64,7 +65,7 @@ export function HomeScreen() {
             <Text>{m['features.home.pressed']({ count })}</Text>
           </Button>
           <Button className="w-full" variant="outline" onPress={() => setCount(0)}>
-            <TimerResetIcon/>
+            <Icon as={TimerResetIcon}/>
             <Text>{m['features.home.reset']()}</Text>
           </Button>
         </CardFooter>
