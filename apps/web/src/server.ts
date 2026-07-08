@@ -1,4 +1,4 @@
-import { paraglideMiddleware } from '@repo/app/src/paraglide/server';
+import { paraglideMiddleware } from '@app/paraglide/server';
 import handler from '@tanstack/react-start/server-entry'
 
 

@@ -2,6 +2,7 @@
 // Lets Metro find hoisted deps at the repo root and transpile the
 // in-source @repo/ui package (which lives outside this app folder).
 const { getDefaultConfig } = require('expo/metro-config')
+const { withNativeWind } = require('nativewind/metro')
 const path = require('path')
 
 const projectRoot = __dirname
@@ -18,4 +19,4 @@ config.resolver.nodeModulesPaths = [
   path.resolve(workspaceRoot, 'node_modules'),
 ]
 
-module.exports = config
+module.exports = withNativeWind(config, { input: './global.css', inlineRem: 16 })

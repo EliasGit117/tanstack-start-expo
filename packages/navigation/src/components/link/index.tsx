@@ -12,7 +12,7 @@ export type TextLinkProps = {
 // is client-side with preloading.
 export function TextLink({ href, children }: TextLinkProps) {
   return (
-    <Link to={href} style={{ color: '#2563eb', fontSize: 16 }}>
+    <Link to={href}>
       {children}
     </Link>
   )

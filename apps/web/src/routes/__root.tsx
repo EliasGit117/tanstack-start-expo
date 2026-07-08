@@ -1,17 +1,17 @@
 import {
   HeadContent,
   Scripts,
-  createRootRouteWithContext, Link
+  createRootRouteWithContext
 } from '@tanstack/react-router';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import type { QueryClient } from '@tanstack/react-query';
 import { ReactNativeWebStyleTag } from '@/components/style-tag.tsx';
-import { View } from 'react-native';
 import appCss from '../styles.css?url';
-import { StyleSheet } from 'react-native';
-import { getLocale } from '@repo/app/src/paraglide/runtime';
+import { getLocale } from '@app/paraglide/runtime';
+import type { ReactNode } from 'react';
+import { Header } from '@/components/header.tsx';
 
 
 interface IRouterContext {
@@ -29,10 +29,11 @@ export const Route = createRootRouteWithContext<IRouterContext>()({
       { rel: 'stylesheet', href: appCss }
     ]
   }),
-  shellComponent: RootDocument
+  shellComponent: RootDocument,
+  notFoundComponent: () => <p>Not Found</p>
 });
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument({ children }: { children: ReactNode }) {
   const locale = getLocale();
 
   return (
@@ -42,17 +43,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <HeadContent/><title></title>
     </head>
     <body>
-    <View style={styles.container}>
-      <Link to="/">
-        Home
-      </Link>
-      <Link to="/rsc">
-        RSC
-      </Link>
-      <Link to="/settings">
-        Settings
-      </Link>
-    </View>
+
+    <Header/>
     {children}
 
     <TanStackDevtools
@@ -67,14 +59,3 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-    gap: 16,
-    alignItems: 'flex-start',
-    display: 'flex',
-    flexDirection: 'row'
-  }
-});

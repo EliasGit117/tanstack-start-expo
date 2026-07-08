@@ -1,64 +1,87 @@
-import { useState } from 'react'
-import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Button } from '@repo/app/src/components/ui/button'
-import { TextLink } from '@repo/navigation'
-import { m } from '@repo/app/src/paraglide/messages'
-import { locales } from '@repo/app/src/paraglide/runtime'
-import { getLocale, setLocale } from '@repo/app/src/paraglide/runtime';
+import { useState } from 'react';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { Button } from '@app/components/ui/button';
+import { Text } from '@app/components/ui/text';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter
+} from '@app/components/ui/card';
+import { TextLink } from '@navigation';
+import { m } from '@app/paraglide/messages';
+import { isLocale, locales } from '@app/paraglide/runtime';
+import { getLocale, setLocale } from '@app/paraglide/runtime';
+import { ToggleGroup, ToggleGroupItem } from '@app/components/ui/toggle-group';
+import { TimerResetIcon } from 'lucide-react-native';
+import { Icon } from '@app/components/ui/icon';
 
-/**
- * Cross-platform Home screen. Rendered by the TanStack Start route on web
- * (via react-native-web) and by the Expo app natively via expo-router.
- */
+
 export function HomeScreen() {
-  const [count, setCount] = useState(0)
-  const locale= getLocale();
+  const [count, setCount] = useState(0);
+  const locale = getLocale();
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
-      <Text style={styles.title}>{m["features.home.title"]()}</Text>
-      <Text style={styles.subtitle}>
-        {m["features.home.subtitle"]({ app: '@repo/app', ui: 'components/ui', navigation: '@repo/navigation' })}
-      </Text>
+      <Card className="max-w-sm">
+        <CardHeader>
+          <CardTitle>{m['features.home.title']()}</CardTitle>
+          <CardDescription>
+            {m['features.home.subtitle']({ app: '@app', ui: 'components/ui', navigation: '@navigation' })}
+          </CardDescription>
+        </CardHeader>
 
-      <View style={styles.row}>
-        {locales.map((l) => (
-          <Button
-            key={l}
-            variant={l === locale ? 'primary' : 'secondary'}
-            onPress={() => setLocale(l)}
+        <CardContent className="flex-col gap-2">
+          <Text>Locale</Text>
+          <ToggleGroup
+            variant="outline"
+            type="single"
+            value={locale}
+            onValueChange={(newValue) => {
+              if (!isLocale(newValue))
+                return;
+
+              setLocale(newValue);
+            }}
           >
-            {l.toUpperCase()}
+            {locales.map((item, index) => (
+              <ToggleGroupItem
+                value={item}
+                aria-label={`Select "${item}"`}
+                isLast={index === locales.length - 1}
+                isFirst={index === 0}
+                key={item}
+              >
+                <Text>{item.toUpperCase()}</Text>
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
+        </CardContent>
+
+        <CardFooter className="flex flex-col gap-2">
+          <Button className="w-full" onPress={() => setCount((c) => c + 1)}>
+            <Text>{m['features.home.pressed']({ count })}</Text>
           </Button>
-        ))}
+          <Button className="w-full" variant="outline" onPress={() => setCount(0)}>
+            <Icon as={TimerResetIcon}/>
+            <Text>{m['features.home.reset']()}</Text>
+          </Button>
+        </CardFooter>
+      </Card>
+
+      <View className="flex flex-row gap-2 px-2">
+        <TextLink href="/users">{m['features.home.viewUsers']()}</TextLink>
       </View>
-
-      <Button onPress={() => setCount((c) => c + 1)}>{m["features.home.pressed"]({ count })}</Button>
-      <Button variant="secondary" onPress={() => setCount(0)}>
-        {m["features.home.reset"]()}
-      </Button>
-
-      <TextLink href="/users">{m["features.home.viewUsers"]()}</TextLink>
     </ScrollView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     padding: Platform.OS === 'ios' ? 24 : 16,
     gap: 16,
-    alignItems: 'flex-start',
-  },
-  row: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#444',
-  },
-})
+    alignItems: 'flex-start'
+  }
+});

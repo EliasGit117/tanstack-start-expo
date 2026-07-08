@@ -17,7 +17,7 @@ export type TextLinkProps = {
 export function TextLink({ href, children, dismissTo }: TextLinkProps) {
   return (
     <Link href={href as never} dismissTo={dismissTo} asChild>
-      <Text style={{ color: '#2563eb', fontSize: 16 }}>{children}</Text>
+      <Text>{children}</Text>
     </Link>
   )
 }

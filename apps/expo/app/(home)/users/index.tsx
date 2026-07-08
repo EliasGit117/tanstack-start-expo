@@ -1,3 +1,3 @@
-import { UserListScreen } from '@repo/app'
+import { UserListScreen } from '@app/features/user/list-screen';
 
-export default UserListScreen
+export default UserListScreen;

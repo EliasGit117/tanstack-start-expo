@@ -19,5 +19,6 @@ todos.json
 .expo
 apps/mobile/android
 apps/mobile/ios
+apps/web/.vercel
 *.orig.*
 web-build

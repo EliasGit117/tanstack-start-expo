@@ -7,7 +7,7 @@ import {
   overwriteGetLocale,
   overwriteSetLocale,
   type Locale, isLocale
-} from '@repo/app/src/paraglide/runtime';
+} from '@app/paraglide/runtime';
 
 
 const LOCALE_KEY = 'locale';

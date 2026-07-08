@@ -1,3 +1,3 @@
-import { UserDetailScreen } from '@repo/app'
+import { UserDetailScreen } from '@app/features/user/detail-screen';
 
-export default UserDetailScreen
+export default UserDetailScreen;

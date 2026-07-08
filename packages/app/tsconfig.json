@@ -10,7 +10,13 @@
     "skipLibCheck": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "types": ["react", "react-native"]
+    "types": ["react", "react-native"],
+    "baseUrl": ".",
+    "paths": {
+      "@app": ["src/index.ts"],
+      "@app/*": ["src/*"],
+      "@navigation": ["../navigation/src/index.ts"]
+    }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "nativewind-env.d.ts"]
 }

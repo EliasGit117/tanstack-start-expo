@@ -13,6 +13,7 @@ import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as RscRouteImport } from './routes/rsc'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UsersIndexRouteImport } from './routes/users.index'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as UsersIdRouteImport } from './routes/users.$id'
 
 const SettingsRoute = SettingsRouteImport.update({
@@ -35,6 +36,11 @@ const UsersIndexRoute = UsersIndexRouteImport.update({
   path: '/users/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UsersIdRoute = UsersIdRouteImport.update({
   id: '/users/$id',
   path: '/users/$id',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/rsc': typeof RscRoute
   '/settings': typeof SettingsRoute
   '/users/$id': typeof UsersIdRoute
+  '/blog/': typeof BlogIndexRoute
   '/users/': typeof UsersIndexRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/rsc': typeof RscRoute
   '/settings': typeof SettingsRoute
   '/users/$id': typeof UsersIdRoute
+  '/blog': typeof BlogIndexRoute
   '/users': typeof UsersIndexRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,22 @@ export interface FileRoutesById {
   '/rsc': typeof RscRoute
   '/settings': typeof SettingsRoute
   '/users/$id': typeof UsersIdRoute
+  '/blog/': typeof BlogIndexRoute
   '/users/': typeof UsersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/rsc' | '/settings' | '/users/$id' | '/users/'
+  fullPaths: '/' | '/rsc' | '/settings' | '/users/$id' | '/blog/' | '/users/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/rsc' | '/settings' | '/users/$id' | '/users'
-  id: '__root__' | '/' | '/rsc' | '/settings' | '/users/$id' | '/users/'
+  to: '/' | '/rsc' | '/settings' | '/users/$id' | '/blog' | '/users'
+  id:
+    | '__root__'
+    | '/'
+    | '/rsc'
+    | '/settings'
+    | '/users/$id'
+    | '/blog/'
+    | '/users/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +92,7 @@ export interface RootRouteChildren {
   RscRoute: typeof RscRoute
   SettingsRoute: typeof SettingsRoute
   UsersIdRoute: typeof UsersIdRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   UsersIndexRoute: typeof UsersIndexRoute
 }
 
@@ -109,6 +126,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UsersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/users/$id': {
       id: '/users/$id'
       path: '/users/$id'
@@ -124,6 +148,7 @@ const rootRouteChildren: RootRouteChildren = {
   RscRoute: RscRoute,
   SettingsRoute: SettingsRoute,
   UsersIdRoute: UsersIdRoute,
+  BlogIndexRoute: BlogIndexRoute,
   UsersIndexRoute: UsersIndexRoute,
 }
 export const routeTree = rootRouteImport

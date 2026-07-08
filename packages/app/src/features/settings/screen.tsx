@@ -1,7 +1,8 @@
-import { Platform, ScrollView, StyleSheet, Text } from 'react-native';
-import { Button } from '@repo/app/src/components/ui/button'
-import { m } from '@repo/app/src/paraglide/messages'
-import { resetLocale } from '@repo/app/src/providers/locale'
+import { Platform, ScrollView, StyleSheet } from 'react-native';
+import { Button } from '@app/components/ui/button'
+import { Text } from '@app/components/ui/text'
+import { m } from '@app/paraglide/messages'
+import { resetLocale } from '@app/providers/locale'
 
 /**
  * Cross-platform Settings screen. Rendered by the TanStack Start route on web
@@ -10,9 +11,9 @@ import { resetLocale } from '@repo/app/src/providers/locale'
 export function SettingsScreen() {
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
-      {Platform.OS === 'web' && <Text style={styles.title}>{m["features.settings.title"]()}</Text>}
-      <Button variant="secondary" onPress={() => resetLocale()}>
-        {m["features.settings.resetLocale"]()}
+      {Platform.OS === 'web' && <Text variant="h3">{m["features.settings.title"]()}</Text>}
+      <Button variant="outline" onPress={() => resetLocale()}>
+        <Text>{m["features.settings.resetLocale"]()}</Text>
       </Button>
     </ScrollView>
   )
@@ -23,9 +24,5 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 24 : 16,
     gap: 16,
     alignItems: 'flex-start',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
   },
 })
