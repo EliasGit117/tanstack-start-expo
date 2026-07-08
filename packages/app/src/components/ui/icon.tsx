@@ -9,6 +9,7 @@ type IconProps = LucideProps & {
 } & React.RefAttributes<LucideIcon>;
 
 function IconImpl({ as: IconComponent, ...props }: IconProps) {
+  'use no memo';
   return <IconComponent {...props} />;
 }
 

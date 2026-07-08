@@ -6,7 +6,6 @@ import babel from '@rolldown/plugin-babel';
 import { rnw } from 'vite-plugin-rnw';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import { nitro } from 'nitro/vite';
-import { cjsInterop } from 'vite-plugin-cjs-interop';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 
 
@@ -21,7 +20,6 @@ export default defineConfig({
   },
   plugins: [
     devtools(),
-    cjsInterop({ dependencies: ['react-native-css-interop/**'] }),
     viteCommonjs({ include: ['react-native-css-interop', 'react-native-svg'] }),
     paraglideVitePlugin({
       project: '../../packages/app/project.inlang',
@@ -38,10 +36,6 @@ export default defineConfig({
     }),
     babel({ presets: [reactCompilerPreset()] })
   ],
-  optimizeDeps: {
-    include: ['react-native-svg', 'lucide-react-native'],
-    exclude: ['nativewind', 'react-native-css-interop']
-  },
   ssr: {
     noExternal: [
       'nativewind',

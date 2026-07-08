@@ -15,12 +15,9 @@ import { m } from '@repo/app/src/paraglide/messages';
 import { isLocale, locales } from '@repo/app/src/paraglide/runtime';
 import { getLocale, setLocale } from '@repo/app/src/paraglide/runtime';
 import { ToggleGroup, ToggleGroupItem } from '../../components/ui/toggle-group';
-import { HeartIcon, TimerResetIcon } from 'lucide-react-native';
+import { TimerResetIcon } from 'lucide-react-native';
 
-/**
- * Cross-platform Home screen. Rendered by the TanStack Start route on web
- * (via react-native-web) and by the Expo app natively via expo-router.
- */
+
 export function HomeScreen() {
   const [count, setCount] = useState(0);
   const locale = getLocale();
