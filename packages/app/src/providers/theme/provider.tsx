@@ -2,8 +2,8 @@ import type { PropsWithChildren } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider as NavThemeProvider } from 'expo-router/react-navigation';
 import { ThemeContextProvider } from './context';
-import { NAV_THEME } from '@app';
 import { useColorScheme } from '@app/hooks/use-color-scheme';
+import { NAV_THEME } from '@app/providers/theme/theme';
 
 // Native theme provider. NativeWind drives the `dark` class from the persisted
 // preference (via ThemeContextProvider + useColorScheme); here we feed the
