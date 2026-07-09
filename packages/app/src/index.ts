@@ -5,5 +5,7 @@ export { HomeScreen } from './features/home/screen';
 export { UserDetailScreen } from './features/user/detail-screen';
 export { USERS, getUser, type User } from './lib/users';
 export { Providers } from './providers';
+export { THEME, NAV_THEME } from './providers/theme/theme';
+export { useColorScheme } from './hooks/use-color-scheme';
 export { m } from './paraglide/messages';
 export { locales, baseLocale, type Locale } from './paraglide/runtime';

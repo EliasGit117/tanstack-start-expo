@@ -37,9 +37,22 @@ export default defineConfig({
     }),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  optimizeDeps: {
+    include: [
+      '@rn-primitives/portal',
+      '@rn-primitives/dropdown-menu',
+      '@radix-ui/react-dropdown-menu'
+    ]
+  },
   ssr: {
     noExternal: [
       'nativewind',
+      // Keep react-native in the SSR bundle pipeline instead of externalizing it.
+      // Externalized bare `react-native` skips resolve.alias, so the server loads
+      // react-native's Flow-typed index.js and crashes renderToReadableStream.
+      // Bundled, it resolves through the alias to react-native-web.
+      'react-native',
+      'react-native-web',
       'react-native-css-interop',
       'react-native-safe-area-context',
       'lucide-react-native',
@@ -51,6 +64,7 @@ export default defineConfig({
 
 function getNativeWindAliases(): AliasOptions {
   return [
+    { find: /^react-native$/, replacement: 'react-native-web' },
     { find: 'nativewind/jsx-dev-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-dev-runtime' },
     { find: 'nativewind/jsx-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-runtime' },
     { find: /^react-native-css-interop$/, replacement: 'react-native-css-interop/src/index' },

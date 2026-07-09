@@ -10,6 +10,7 @@ import type { QueryClient } from '@tanstack/react-query';
 import { ReactNativeWebStyleTag } from '@/components/style-tag.tsx';
 import appCss from '../styles.css?url';
 import { getLocale } from '@app/paraglide/runtime';
+import { Providers } from '@app';
 import type { ReactNode } from 'react';
 import { Header } from '@/components/header.tsx';
 
@@ -37,15 +38,17 @@ function RootDocument({ children }: { children: ReactNode }) {
   const locale = getLocale();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
     <head title="TanStack Start Starter">
       <ReactNativeWebStyleTag/>
       <HeadContent/><title></title>
     </head>
     <body>
 
+    <Providers>
     <Header/>
     {children}
+    </Providers>
 
     <TanStackDevtools
       config={{ position: 'bottom-right' }}
