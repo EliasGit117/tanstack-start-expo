@@ -64,7 +64,6 @@ export default defineConfig({
 
 function getNativeWindAliases(): AliasOptions {
   return [
-    { find: /^react-native$/, replacement: 'react-native-web' },
     { find: 'nativewind/jsx-dev-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-dev-runtime' },
     { find: 'nativewind/jsx-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-runtime' },
     { find: /^react-native-css-interop$/, replacement: 'react-native-css-interop/src/index' },
