@@ -1,5 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
+  "app": {
+    "title": "TanStack Start Starter",
+    "notFound": "Not Found"
+  },
   "features": {
     "home": {
       "tab": "Home",
@@ -7,11 +11,34 @@
       "subtitle": "{app} screens, {ui} components, {navigation} links.",
       "pressed": "Pressed {count} times",
       "reset": "Reset",
-      "viewUsers": "View users →"
+      "viewUsers": "View users →",
+      "locale": "Locale",
+      "selectLocale": "Select \"{locale}\""
     },
     "settings": {
       "title": "Settings",
-      "resetLocale": "Reset language to device default"
+      "resetLocale": "Reset language to device default",
+      "theme": {
+        "appearance": "Appearance",
+        "preference": "Preference: {preference} · Active: {active}",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+      }
+    },
+    "blog": {
+      "tab": "Blog",
+      "title": "Blog",
+      "subtitle": "Explore our blog"
+    },
+    "header": {
+      "rsc": "RSC"
+    },
+    "rsc": {
+      "title": "Server component test",
+      "message": "Rendered from the server",
+      "time": "time: {time}",
+      "node": "node: {node}"
     },
     "users": {
       "title": "Users",

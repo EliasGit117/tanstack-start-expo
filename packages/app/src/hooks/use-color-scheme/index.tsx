@@ -1,7 +1,8 @@
 import { useColorScheme as useNativewindColorScheme } from 'nativewind';
 import { useEffect, useState } from 'react';
-import { Theme } from '@app/providers/theme/types';
 import { useThemeContext } from '@app/providers/theme/context';
+import { Theme } from '@app/providers/theme';
+
 
 export function useColorScheme() {
   const { theme, setTheme, hasHydrated } = useThemeContext();

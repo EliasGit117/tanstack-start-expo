@@ -4,6 +4,7 @@ import { buttonTextVariants, buttonVariants } from '@app/components/ui/button';
 import { Text } from '@app/components/ui/text';
 import { cn } from '@app/lib/utils';
 import type { ComponentProps, FC } from 'react';
+import { m } from '@app/paraglide/messages';
 
 
 export const Header: FC<ComponentProps<typeof View>> = () => {
@@ -15,7 +16,7 @@ export const Header: FC<ComponentProps<typeof View>> = () => {
         className={cn(buttonVariants({ variant: 'link', className: 'flex px-0.5 py-0.5' }))}
         activeProps={{ 'data-active': 'true' }}
       >
-        <Text className={buttonTextVariants({ variant: 'link' })}>Home</Text>
+        <Text className={buttonTextVariants({ variant: 'link' })}>{m['features.home.tab']()}</Text>
       </Link>
 
       <Link
@@ -23,7 +24,7 @@ export const Header: FC<ComponentProps<typeof View>> = () => {
         className={cn(buttonVariants({ variant: 'link', className: 'flex px-0.5 py-0.5' }))}
         activeProps={{ 'data-active': 'true' }}
       >
-        <Text className={buttonTextVariants({ variant: 'link' })}>RSC</Text>
+        <Text className={buttonTextVariants({ variant: 'link' })}>{m['features.header.rsc']()}</Text>
       </Link>
 
       <Link
@@ -31,7 +32,7 @@ export const Header: FC<ComponentProps<typeof View>> = () => {
         className={cn(buttonVariants({ variant: 'link', className: 'flex px-0.5 py-0.5' }))}
         activeProps={{ 'data-active': 'true' }}
       >
-        <Text className={buttonTextVariants({ variant: 'link' })}>Blog</Text>
+        <Text className={buttonTextVariants({ variant: 'link' })}>{m['features.blog.tab']()}</Text>
       </Link>
 
       <Link
@@ -39,7 +40,7 @@ export const Header: FC<ComponentProps<typeof View>> = () => {
         className={cn(buttonVariants({ variant: 'link', className: 'flex px-0.5 py-0.5' }))}
         activeProps={{ 'data-active': 'true' }}
       >
-        <Text className={buttonTextVariants({ variant: 'link' })}>Settings</Text>
+        <Text className={buttonTextVariants({ variant: 'link' })}>{m['features.settings.title']()}</Text>
       </Link>
     </View>
   );

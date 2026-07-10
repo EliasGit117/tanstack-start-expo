@@ -1,5 +1,6 @@
+import { m } from '@app/paraglide/messages'
 import { Stack } from 'expo-router'
-import { m } from '@app'
+
 
 export default function SettingsLayout() {
   return (

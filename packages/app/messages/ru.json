@@ -1,5 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
+  "app": {
+    "title": "TanStack Start Starter",
+    "notFound": "Не найдено"
+  },
   "features": {
     "home": {
       "tab": "Главная",
@@ -7,11 +11,34 @@
       "subtitle": "Экраны {app}, компоненты {ui}, ссылки {navigation}.",
       "pressed": "Нажато {count} раз",
       "reset": "Сбросить",
-      "viewUsers": "Пользователи →"
+      "viewUsers": "Пользователи →",
+      "locale": "Язык",
+      "selectLocale": "Выбрать \"{locale}\""
     },
     "settings": {
       "title": "Настройки",
-      "resetLocale": "Сбросить язык на язык устройства"
+      "resetLocale": "Сбросить язык на язык устройства",
+      "theme": {
+        "appearance": "Оформление",
+        "preference": "Настройка: {preference} · Активна: {active}",
+        "light": "Светлая",
+        "dark": "Тёмная",
+        "system": "Системная"
+      }
+    },
+    "blog": {
+      "tab": "Блог",
+      "title": "Блог",
+      "subtitle": "Изучите наш блог"
+    },
+    "header": {
+      "rsc": "RSC"
+    },
+    "rsc": {
+      "title": "Тест серверного компонента",
+      "message": "Отрендерено на сервере",
+      "time": "время: {time}",
+      "node": "node: {node}"
     },
     "users": {
       "title": "Пользователи",

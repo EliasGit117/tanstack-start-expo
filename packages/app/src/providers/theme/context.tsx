@@ -8,7 +8,7 @@ import {
   type PropsWithChildren
 } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { Theme, isTheme } from './types';
+import { isTheme, Theme } from './types';
 
 
 const STORAGE_KEY = 'theme';

@@ -2,9 +2,9 @@
 
 import { useTheme } from 'better-themes';
 import { useEffect, useState } from 'react';
-import { Theme, isTheme } from '@app/providers/theme/types';
-
+import { isTheme, Theme } from '@app/providers/theme/types';
 type TColorScheme = 'light' | 'dark';
+
 
 function toThemeSetting(value: string | undefined): Theme {
   return isTheme(value) ? value : Theme.System;

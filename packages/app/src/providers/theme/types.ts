@@ -1,6 +1,6 @@
 // Platform-neutral theme types. Kept free of native-only imports (e.g.
-// expo-secure-store) so the web bundle can import `Theme`/`isTheme` without
-// pulling in React Native modules.
+// expo-secure-store, expo-router/react-navigation) so the web bundle can
+// import `Theme`/`isTheme` without pulling in React Native modules.
 export enum Theme {
   Light = 'light',
   Dark = 'dark',

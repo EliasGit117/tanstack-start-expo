@@ -34,7 +34,7 @@ export function HomeScreen() {
         </CardHeader>
 
         <CardContent className="flex-col gap-2">
-          <Text>Locale</Text>
+          <Text>{m['features.home.locale']()}</Text>
           <ToggleGroup
             variant="outline"
             type="single"
@@ -49,7 +49,7 @@ export function HomeScreen() {
             {locales.map((item, index) => (
               <ToggleGroupItem
                 value={item}
-                aria-label={`Select "${item}"`}
+                aria-label={m['features.home.selectLocale']({ locale: item })}
                 isLast={index === locales.length - 1}
                 isFirst={index === 0}
                 key={item}

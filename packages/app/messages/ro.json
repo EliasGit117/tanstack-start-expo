@@ -1,5 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
+  "app": {
+    "title": "TanStack Start Starter",
+    "notFound": "Negăsit"
+  },
   "features": {
     "home": {
       "tab": "Acasă",
@@ -7,11 +11,34 @@
       "subtitle": "Ecrane {app}, componente {ui}, linkuri {navigation}.",
       "pressed": "Apăsat de {count} ori",
       "reset": "Resetează",
-      "viewUsers": "Vezi utilizatorii →"
+      "viewUsers": "Vezi utilizatorii →",
+      "locale": "Limbă",
+      "selectLocale": "Selectează \"{locale}\""
     },
     "settings": {
       "title": "Setări",
-      "resetLocale": "Resetează limba la cea a dispozitivului"
+      "resetLocale": "Resetează limba la cea a dispozitivului",
+      "theme": {
+        "appearance": "Aspect",
+        "preference": "Preferință: {preference} · Activ: {active}",
+        "light": "Deschis",
+        "dark": "Închis",
+        "system": "Sistem"
+      }
+    },
+    "blog": {
+      "tab": "Blog",
+      "title": "Blog",
+      "subtitle": "Explorează blogul nostru"
+    },
+    "header": {
+      "rsc": "RSC"
+    },
+    "rsc": {
+      "title": "Test funcție server",
+      "message": "Randat de pe server",
+      "time": "timp: {time}",
+      "node": "node: {node}"
     },
     "users": {
       "title": "Utilizatori",

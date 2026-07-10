@@ -1,15 +1,16 @@
 import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { Text } from '@app/components/ui/text';
 import { Image } from 'react-native';
+import { m } from '@app/paraglide/messages';
 
 
 export function BlogScreen() {
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
-      {Platform.OS === 'web' && <Text variant="h3">Blog</Text>}
+      {Platform.OS === 'web' && <Text variant="h3">{m['features.blog.title']()}</Text>}
       <Text variant="muted">
-        Explore our blog
+        {m['features.blog.subtitle']()}
       </Text>
 
       <View style={{ width: '100%', height: 200 }}>

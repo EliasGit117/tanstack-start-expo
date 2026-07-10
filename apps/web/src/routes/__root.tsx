@@ -10,9 +10,10 @@ import type { QueryClient } from '@tanstack/react-query';
 import { ReactNativeWebStyleTag } from '@/components/style-tag.tsx';
 import appCss from '../styles.css?url';
 import { getLocale } from '@app/paraglide/runtime';
-import { Providers } from '@app';
+import { m } from '@app/paraglide/messages';
 import type { ReactNode } from 'react';
 import { Header } from '@/components/header.tsx';
+import { Providers } from '@app/providers';
 
 
 interface IRouterContext {
@@ -24,14 +25,14 @@ export const Route = createRootRouteWithContext<IRouterContext>()({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'TanStack Start Starter' }
+      { title: m['app.title']() }
     ],
     links: [
       { rel: 'stylesheet', href: appCss }
     ]
   }),
   shellComponent: RootDocument,
-  notFoundComponent: () => <p>Not Found</p>
+  notFoundComponent: () => <p>{m['app.notFound']()}</p>
 });
 
 function RootDocument({ children }: { children: ReactNode }) {

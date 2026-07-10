@@ -5,11 +5,12 @@ import { Button } from '@app/components/ui/button';
 import { Text } from '@app/components/ui/text';
 import { Theme } from '@app/providers/theme/types';
 import { useColorScheme } from '@app/hooks/use-color-scheme';
+import { m } from '@app/paraglide/messages';
 
-const OPTIONS: { value: Theme; label: string; icon: string }[] = [
-  { value: Theme.Light, label: 'Light', icon: '☀️' },
-  { value: Theme.Dark, label: 'Dark', icon: '🌙' },
-  { value: Theme.System, label: 'System', icon: '🖥️' },
+const OPTIONS: { value: Theme; label: () => string; icon: string }[] = [
+  { value: Theme.Light, label: () => m['features.settings.theme.light'](), icon: '☀️' },
+  { value: Theme.Dark, label: () => m['features.settings.theme.dark'](), icon: '🌙' },
+  { value: Theme.System, label: () => m['features.settings.theme.system'](), icon: '🖥️' },
 ];
 
 export function ThemeSwitcher() {
@@ -22,9 +23,12 @@ export function ThemeSwitcher() {
   return (
     <View className="w-full max-w-[600px] gap-4 rounded-lg border border-border bg-card p-4">
       <View className="items-center gap-1">
-        <Text variant="large" className="text-card-foreground">Appearance</Text>
+        <Text variant="large" className="text-card-foreground">{m['features.settings.theme.appearance']()}</Text>
         <Text variant="muted">
-          Preference: {loaded ? theme : '…'} · Active: {loaded ? colorScheme : '…'}
+          {m['features.settings.theme.preference']({
+            preference: loaded ? theme : '…',
+            active: loaded ? colorScheme : '…'
+          })}
         </Text>
       </View>
 
@@ -38,7 +42,7 @@ export function ThemeSwitcher() {
             className="min-w-[96px]"
           >
             <Text className="text-base">{icon}</Text>
-            <Text>{label}</Text>
+            <Text>{label()}</Text>
           </Button>
         ))}
       </View>

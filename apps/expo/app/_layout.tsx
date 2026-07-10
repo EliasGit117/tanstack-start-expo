@@ -1,6 +1,10 @@
-import { NativeTabs } from 'expo-router/unstable-native-tabs';
-import { Providers, m, THEME, useColorScheme } from '@app';
 import '../global.css';
+import { NativeTabs } from 'expo-router/unstable-native-tabs';
+import { THEME } from '@app/providers/theme/theme';
+import { useColorScheme } from '@app/hooks/use-color-scheme';
+import { Providers } from '@app/providers';
+import { m } from '@app/paraglide/messages';
+
 
 export default function RootLayout() {
   return (
@@ -30,7 +34,7 @@ export function Tabs() {
 
       <NativeTabs.Trigger name="(blog)">
         <NativeTabs.Trigger.Icon sf={{ default: 'doc.text', selected: 'doc.text.fill' }} md="article"/>
-        <NativeTabs.Trigger.Label>Blog</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{m['features.blog.tab']()}</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="settings">

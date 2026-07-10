@@ -2,10 +2,11 @@ import { createFileRoute } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import { View } from 'react-native';
 import { Text } from '@app/components/ui/text';
+import { m } from '@app/paraglide/messages';
 
 const getServerData = createServerFn({ method: 'GET' }).handler(async () => {
   return {
-    message: 'Rendered from the server',
+    message: m['features.rsc.message'](),
     time: new Date().toISOString(),
     node: process.version
   };
@@ -23,10 +24,10 @@ function RscTest() {
 
   return (
     <View className="flex flex-col gap-4 p-4">
-      <Text className="text-xl">Server Function Test</Text>
+      <Text className="text-xl">{m['features.rsc.title']()}</Text>
       <Text>{data.message}</Text>
-      <Text>time: {data.time}</Text>
-      <Text>node: {data.node}</Text>
+      <Text>{m['features.rsc.time']({ time: data.time })}</Text>
+      <Text>{m['features.rsc.node']({ node: data.node })}</Text>
     </View>
   );
 }

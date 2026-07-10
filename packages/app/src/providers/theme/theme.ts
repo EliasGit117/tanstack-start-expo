@@ -1,7 +1,5 @@
-import { DarkTheme, DefaultTheme, type Theme } from 'expo-router/react-navigation';
+import { DarkTheme, DefaultTheme, type Theme as RNTheme } from 'expo-router/react-navigation';
 
-// Semantic color tokens. Mirrors the HSL CSS variables in apps/expo/global.css
-// (and the Tailwind config) so JS-side styling matches the NativeWind classes.
 export const THEME = {
   light: {
     background: 'hsl(0 0% 100%)',
@@ -59,9 +57,8 @@ export const THEME = {
   },
 } as const;
 
-// React Navigation theme derived from the semantic tokens above. Drives screen,
-// header and border colors for JS-rendered navigators.
-export const NAV_THEME: Record<'light' | 'dark', Theme> = {
+
+export const NAV_THEME: Record<'light' | 'dark', RNTheme> = {
   light: {
     ...DefaultTheme,
     colors: {
@@ -84,4 +81,4 @@ export const NAV_THEME: Record<'light' | 'dark', Theme> = {
       text: THEME.dark.foreground,
     },
   },
-};
+} as const;
