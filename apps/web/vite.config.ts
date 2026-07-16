@@ -19,9 +19,27 @@ export default defineConfig({
     alias: getNativeWindAliases(),
     dedupe: ['react', 'react-dom']
   },
+  // rnw defines `global` as `window` for the browser; override back to
+  // globalThis for SSR, where window doesn't exist.
+  environments: {
+    ssr: {
+      define: {
+        global: 'globalThis'
+      }
+    }
+  },
   plugins: [
-    devtools(),
-    viteCommonjs({ include: ['react-native-css-interop', 'react-native-svg'] }),
+    devtools({
+      // FullWindowOverlay resolves to React.Fragment on non-iOS; skip
+      // injection there since Fragment rejects the injected prop.
+      injectSource: { enabled: true, ignore: { components: ['FullWindowOverlay'] } }
+    }),
+    // react-native-reanimated ships a CJS script (validate-worklets-version)
+    // with a bare `require()` call that Vite's SSR module runner can't
+    // evaluate on its own; this plugin gives it proper require() interop.
+    viteCommonjs({
+      include: ['react-native-css-interop', 'react-native-svg', 'react-native-reanimated']
+    }),
     paraglideVitePlugin({
       project: '../../packages/app/project.inlang',
       outdir: '../../packages/app/src/paraglide',
@@ -41,22 +59,16 @@ export default defineConfig({
     include: [
       '@rn-primitives/portal',
       '@rn-primitives/dropdown-menu',
-      '@radix-ui/react-dropdown-menu'
+      '@rn-primitives/dialog',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-dialog'
     ]
   },
   ssr: {
     noExternal: [
       'nativewind',
-      // Keep react-native in the SSR bundle pipeline instead of externalizing it.
-      // Externalized bare `react-native` skips resolve.alias, so the server loads
-      // react-native's Flow-typed index.js and crashes renderToReadableStream.
-      // Bundled, it resolves through the alias to react-native-web.
-      'react-native',
-      'react-native-web',
-      'react-native-css-interop',
-      'react-native-safe-area-context',
       'lucide-react-native',
-      'react-native-svg',
+      /^react-native(-|$)/,
       /^@rn-primitives\//
     ]
   }
