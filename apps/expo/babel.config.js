@@ -23,6 +23,9 @@ module.exports = function (api) {
           ],
         },
       ],
+      // Must be listed last. Reanimated v4 moved the worklets transform to
+      // this package (was `react-native-reanimated/plugin` in v3).
+      'react-native-worklets/plugin',
     ],
   }
 }

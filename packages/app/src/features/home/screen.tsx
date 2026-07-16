@@ -27,6 +27,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@app/components/ui/dialog';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@app/components/ui/dropdown-menu';
 
 
 export function HomeScreen() {
@@ -63,6 +71,28 @@ export function HomeScreen() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">
+            <Text>Open Menu</Text>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56">
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <Text>Profile</Text>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Text>Settings</Text>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem variant="destructive">
+            <Text>Log out</Text>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
       <Card className="max-w-sm">
         <CardHeader>
