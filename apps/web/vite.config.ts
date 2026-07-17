@@ -7,6 +7,7 @@ import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import { nitro } from 'nitro/vite';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import requireTransform from 'vite-plugin-require-transform';
 
 
 export default defineConfig({
@@ -28,6 +29,7 @@ export default defineConfig({
   },
   plugins: [
     tsconfigPaths(),
+    requireTransform(),
     devtools({
       // FullWindowOverlay resolves to React.Fragment on non-iOS;
       injectSource: { enabled: true, ignore: { components: ['FullWindowOverlay'] } }
@@ -86,6 +88,6 @@ function getNativeWindAliases(): AliasOptions {
     { find: /^react-native-css-interop$/, replacement: 'react-native-css-interop/src/index' },
     { find: /^@app\/(.*)/, replacement: path.resolve(__dirname, '../../packages/app/src/$1') },
     { find: '@app', replacement: path.resolve(__dirname, '../../packages/app/src/index.ts') },
-    { find: '@navigation', replacement: path.resolve(__dirname, '../../packages/navigation/src/index.ts') }
+    { find: '@navigation', replacement: path.resolve(__dirname, '../../packages/navigation/src/index.ts') },
   ];
 }
