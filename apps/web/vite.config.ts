@@ -29,18 +29,13 @@ export default defineConfig({
   },
   plugins: [
     tsconfigPaths(),
-    requireTransform(),
+    requireTransform({ fileRegex: /react-native-css-interop\/src\/.*\.tsx?$|expo\/src\/winter\/runtime\.ts$/ }),
     devtools({
       // FullWindowOverlay resolves to React.Fragment on non-iOS;
       injectSource: { enabled: true, ignore: { components: ['FullWindowOverlay'] } }
     }),
     viteCommonjs({
-      include: [
-        'react-native-css-interop',
-        'react-native-svg',
-        'react-native-reanimated',
-        'expo/src/winter/runtime'
-      ]
+      include: ['react-native-reanimated', 'react-native-svg']
     }),
     paraglideVitePlugin({
       project: '../../packages/app/project.inlang',
@@ -88,6 +83,6 @@ function getNativeWindAliases(): AliasOptions {
     { find: /^react-native-css-interop$/, replacement: 'react-native-css-interop/src/index' },
     { find: /^@app\/(.*)/, replacement: path.resolve(__dirname, '../../packages/app/src/$1') },
     { find: '@app', replacement: path.resolve(__dirname, '../../packages/app/src/index.ts') },
-    { find: '@navigation', replacement: path.resolve(__dirname, '../../packages/navigation/src/index.ts') },
+    { find: '@navigation', replacement: path.resolve(__dirname, '../../packages/navigation/src/index.ts') }
   ];
 }
