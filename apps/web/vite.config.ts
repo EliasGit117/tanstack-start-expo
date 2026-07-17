@@ -2,12 +2,11 @@ import { type AliasOptions, defineConfig } from 'vite';
 import path from 'node:path';
 import { devtools } from '@tanstack/devtools-vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
-import { reactCompilerPreset } from '@vitejs/plugin-react';
-import babel from '@rolldown/plugin-babel';
 import { rnw } from 'vite-plugin-rnw';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import { nitro } from 'nitro/vite';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 
 export default defineConfig({
@@ -15,7 +14,6 @@ export default defineConfig({
     port: Number(process.env.PORT) || 5173
   },
   resolve: {
-    tsconfigPaths: true,
     alias: getNativeWindAliases(),
     dedupe: ['react', 'react-dom']
   },
@@ -29,16 +27,18 @@ export default defineConfig({
     }
   },
   plugins: [
+    tsconfigPaths(),
     devtools({
-      // FullWindowOverlay resolves to React.Fragment on non-iOS; skip
-      // injection there since Fragment rejects the injected prop.
+      // FullWindowOverlay resolves to React.Fragment on non-iOS;
       injectSource: { enabled: true, ignore: { components: ['FullWindowOverlay'] } }
     }),
-    // react-native-reanimated ships a CJS script (validate-worklets-version)
-    // with a bare `require()` call that Vite's SSR module runner can't
-    // evaluate on its own; this plugin gives it proper require() interop.
     viteCommonjs({
-      include: ['react-native-css-interop', 'react-native-svg', 'react-native-reanimated']
+      include: [
+        'react-native-css-interop',
+        'react-native-svg',
+        'react-native-reanimated',
+        'expo/src/winter/runtime'
+      ]
     }),
     paraglideVitePlugin({
       project: '../../packages/app/project.inlang',
@@ -51,9 +51,12 @@ export default defineConfig({
     rnw({
       jsxImportSource: 'nativewind',
       include: /\.(mjs|[tj]sx?)$/,
-      exclude: /\/node_modules\/(?!react-native|@react-native|expo|@expo|@rn-primitives|nativewind|react-native-svg|lucide-react-native)/
-    }),
-    babel({ presets: [reactCompilerPreset()] })
+      exclude: /\/node_modules\/(?!react-native|@react-native|expo|@expo|@rn-primitives|nativewind|react-native-svg|lucide-react-native)/,
+      // rnw spreads these opts into its internal @vitejs/plugin-react call.
+      babel: {
+        plugins: [['babel-plugin-react-compiler', {}]]
+      }
+    })
   ],
   optimizeDeps: {
     include: [
@@ -69,7 +72,9 @@ export default defineConfig({
       'nativewind',
       'lucide-react-native',
       /^react-native(-|$)/,
-      /^@rn-primitives\//
+      /^@rn-primitives\//,
+      'expo',
+      'expo-image'
     ]
   }
 });

@@ -1,10 +1,6 @@
 {
   "name": "tanstack-start-expo",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "web:dev": "cd apps/web && bun run dev",
     "web:build": "cd apps/web && bun run build",
@@ -14,7 +10,17 @@
     "test": "bun --filter '*' test"
   },
   "trustedDependencies": [
+    "bufferutil",
     "esbuild",
-    "lightningcss"
-  ]
+    "lightningcss",
+    "utf-8-validate"
+  ],
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "bufferutil": "^4.1.0",
+    "utf-8-validate": "^6.0.6"
+  }
 }
