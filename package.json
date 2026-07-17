@@ -4,6 +4,7 @@
   "scripts": {
     "web:dev": "cd apps/web && bun run dev",
     "web:build": "cd apps/web && bun run build",
+    "web:smoke-test": "cd apps/web && bun run smoke-test",
     "expo:start": "cd apps/expo && bun run start",
     "expo:ios": "cd apps/expo && bun run ios",
     "expo:android": "cd apps/expo && bun run android",
