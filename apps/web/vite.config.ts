@@ -1,5 +1,4 @@
-import { type AliasOptions, defineConfig } from 'vite';
-import path from 'node:path';
+import { defineConfig } from 'vite';
 import { devtools } from '@tanstack/devtools-vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import { rnw } from 'vite-plugin-rnw';
@@ -15,8 +14,12 @@ export default defineConfig({
     port: Number(process.env.PORT) || 5173
   },
   resolve: {
-    alias: getNativeWindAliases(),
-    dedupe: ['react', 'react-dom']
+    dedupe: ['react', 'react-dom'],
+    alias: [
+      { find: 'nativewind/jsx-dev-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-dev-runtime' },
+      { find: 'nativewind/jsx-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-runtime' },
+      { find: /^react-native-css-interop$/, replacement: 'react-native-css-interop/src/index' }
+    ],
   },
   // rnw defines `global` as `window` for the browser; override back to
   // globalThis for SSR, where window doesn't exist.
@@ -30,13 +33,8 @@ export default defineConfig({
   plugins: [
     tsconfigPaths(),
     requireTransform({ fileRegex: /react-native-css-interop\/src\/.*\.tsx?$|expo\/src\/winter\/runtime\.ts$/ }),
-    devtools({
-      // FullWindowOverlay resolves to React.Fragment on non-iOS;
-      injectSource: { enabled: true, ignore: { components: ['FullWindowOverlay'] } }
-    }),
-    viteCommonjs({
-      include: ['react-native-reanimated', 'react-native-svg']
-    }),
+    devtools({ injectSource: { enabled: true, ignore: { components: ['FullWindowOverlay'] } } }),
+    viteCommonjs({ include: ['react-native-reanimated', 'react-native-svg'] }),
     paraglideVitePlugin({
       project: '../../packages/app/project.inlang',
       outdir: '../../packages/app/src/paraglide',
@@ -76,13 +74,3 @@ export default defineConfig({
   }
 });
 
-function getNativeWindAliases(): AliasOptions {
-  return [
-    { find: 'nativewind/jsx-dev-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-dev-runtime' },
-    { find: 'nativewind/jsx-runtime', replacement: 'react-native-css-interop/src/runtime/jsx-runtime' },
-    { find: /^react-native-css-interop$/, replacement: 'react-native-css-interop/src/index' },
-    { find: /^@app\/(.*)/, replacement: path.resolve(__dirname, '../../packages/app/src/$1') },
-    { find: '@app', replacement: path.resolve(__dirname, '../../packages/app/src/index.ts') },
-    { find: '@navigation', replacement: path.resolve(__dirname, '../../packages/navigation/src/index.ts') }
-  ];
-}
